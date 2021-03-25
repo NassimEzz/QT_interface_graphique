@@ -10,13 +10,6 @@ Model::Model(QString msg)
     }
 
     convertMessage();
-    for (int i = 0; i < msg.length(); i++) {
-        for (int j = 0; j < 7; j++) {
-            std::cout << binMessage[i][j];
-        }
-        std::cout << std::endl;
-    }
-
 }
 
 
