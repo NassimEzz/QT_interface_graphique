@@ -39,4 +39,6 @@ void Model::convertMessage() {
 }
 
 
-
+short ** Model::getbinMessage(){
+    return binMessage;
+}

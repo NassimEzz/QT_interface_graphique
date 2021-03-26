@@ -3,12 +3,14 @@
 
 #include <QString>
 #include <iostream>
+#include <QtCore>
 
 class Model
 {
 public:
     Model(QString msg);
     void convertMessage();
+    short ** getbinMessage();
 
 
 private:
