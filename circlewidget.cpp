@@ -1,9 +1,9 @@
 #include "circlewidget.h"
 #include "model.h"
 
-CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("lol")
+CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("motdepasse")
 {
-    _nbcol= sizeof(_m.getbinMessage());
+    _nbcol= _m.getMsgLength();
     _nbrow= 7;
 }
 
@@ -16,23 +16,23 @@ void CircleWidget::paintEvent(QPaintEvent *e){
 void CircleWidget::drawCircle(){
     int height = this->height();
     int width = this->width();
-    int val = height/8;
-    int val2 = width/8;
-    int c=0;
-    while(_nbrow>0){
-        int j=20;
-        for(int i=0 ; i<7;i++){
-            if(_m.getbinMessage()[i]==0){
+    int heightShift = height/8;
+    int widthShift = width/_nbcol;
+    int colCoord=0;
+
+    for(int k=0;k<_nbcol;k++){
+        int rowCoord=20;
+        for(int i=0 ; i<_nbrow;i++){
+            if(_m.getBit(i+k*_nbrow)==0){
                 _painter.setBrush(QBrush(Qt::black));
-                _painter.drawEllipse(QRect(c,j,10,10));
+                _painter.drawEllipse(QRect(colCoord,rowCoord,10,10));
             }else{
                 _painter.setBrush(QBrush(Qt::red));
-                _painter.drawEllipse(QRect(c,j,10,10));
+                _painter.drawEllipse(QRect(colCoord,rowCoord,10,10));
             }
 
-            j+=val;
+            rowCoord+=heightShift;
         }
-        _nbrow--;
-        c+=val2;
+        colCoord+=widthShift;
     }
 }

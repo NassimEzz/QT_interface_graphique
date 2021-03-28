@@ -3,6 +3,7 @@
 Model::Model(QString msg)
 {
     message = msg;
+    _msgLength=msg.length();
     binMessage = new short*[msg.length()];
 
     for (int i = 0; i < msg.length(); i++) {
@@ -41,4 +42,17 @@ void Model::convertMessage() {
 
 short ** Model::getbinMessage(){
     return binMessage;
+}
+
+
+int Model::getBit(int bit) {
+    if (bit / 7 >= message.length()) {
+        return 0;
+    }
+
+    return binMessage[bit / 7][bit % 7];
+}
+
+int Model::getMsgLength(){
+    return _msgLength;
 }

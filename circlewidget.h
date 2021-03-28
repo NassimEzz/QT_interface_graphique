@@ -10,7 +10,7 @@ class CircleWidget : public QWidget
     Q_OBJECT
 public:
     explicit CircleWidget(QWidget *parent = nullptr);
-    void paintEvent(QPaintEvent *e);
+    void paintEvent(QPaintEvent *event);
 
 private:
     void drawCircle();
