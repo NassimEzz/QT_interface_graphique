@@ -1,7 +1,7 @@
 #include "circlewidget.h"
 #include "model.h"
 
-CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("motdepasse")
+CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("tfou")
 {
     _nbcol= _m.getMsgLength();
     _nbrow= 7;
@@ -17,6 +17,7 @@ void CircleWidget::drawCircle(){
     int height = this->height();
     int width = this->width();
     int heightShift = height/8;
+    int circleRadius = heightShift/2;
     int widthShift = width/_nbcol;
     int colCoord=0;
 
@@ -25,10 +26,10 @@ void CircleWidget::drawCircle(){
         for(int i=0 ; i<_nbrow;i++){
             if(_m.getBit(i+k*_nbrow)==0){
                 _painter.setBrush(QBrush(Qt::black));
-                _painter.drawEllipse(QRect(colCoord,rowCoord,10,10));
+                _painter.drawEllipse(QRect(colCoord,rowCoord,circleRadius,circleRadius));
             }else{
                 _painter.setBrush(QBrush(Qt::red));
-                _painter.drawEllipse(QRect(colCoord,rowCoord,10,10));
+                _painter.drawEllipse(QRect(colCoord,rowCoord,circleRadius,circleRadius));
             }
 
             rowCoord+=heightShift;
