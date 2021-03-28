@@ -1,6 +1,6 @@
 #include "parachutewidget.h"
 
-ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _model("ENSICAEN_RULES"), _numOfTracks(5), _numOfSectors(20)
+ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _model("ENSICAEN_RULES"), _numOfTracks(5), _numOfSectors(21)
 {
 
 }
@@ -8,7 +8,7 @@ ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(th
 void ParachuteWidget::paintEvent(QPaintEvent*)
 {
     _painter.begin(this);
-    for (int k = 0; k < 100; k++) {
+    for (int k = 0; k < 105; k++) {
         drawTrapeze(k, _model.getBit(k));
     }
     _painter.end();
