@@ -1,7 +1,7 @@
 #include "circlewidget.h"
 #include "model.h"
 
-CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("tfou")
+CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("tropforttoicpaspossible")
 {
     _nbcol= _m.getMsgLength();
     _nbrow= 7;
@@ -17,8 +17,8 @@ void CircleWidget::drawCircle(){
     int height = this->height();
     int width = this->width();
     int heightShift = height/8;
-    int circleRadius = heightShift/2;
     int widthShift = width/_nbcol;
+    int circleRadius = std::min(heightShift/2,widthShift/2);
     int colCoord=0;
 
     for(int k=0;k<_nbcol;k++){
