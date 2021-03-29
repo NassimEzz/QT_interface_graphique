@@ -29,20 +29,28 @@ MainWindow::~MainWindow()
 
 void MainWindow::onMessageChanged(QString message) {
     _model->setMessage(message);
-    ui->paraWidget->setMessageBits(_model->getBinMessage(ui->paraWidget->getNumOfSectors() * ui->paraWidget->getNumOfTracks()));
+    updateMessageBits();
+    ui->binWidget->setNumOfColumns(message.length());
     ui->paraWidget->repaint();
+    ui->binWidget->repaint();
 }
 
 void MainWindow::onTrackSliderValueChanged(int sliderValue) {
     ui->paraWidget->setNumOfTracks(sliderValue);
-    ui->paraWidget->setMessageBits(_model->getBinMessage(ui->paraWidget->getNumOfSectors() * ui->paraWidget->getNumOfTracks()));
+    updateMessageBits();
     ui->paraWidget->repaint();
 }
 
 void MainWindow::onSectorSliderValueChanged(int sliderValue) {
     ui->paraWidget->setNumOfSectors(sliderValue);
-    ui->paraWidget->setMessageBits(_model->getBinMessage(ui->paraWidget->getNumOfSectors() * ui->paraWidget->getNumOfTracks()));
+    updateMessageBits();
     ui->paraWidget->repaint();
+}
+
+void MainWindow::updateMessageBits() {
+    short * adaptedMessageBits = _model->getBinMessage(ui->paraWidget->getNumOfSectors() * ui->paraWidget->getNumOfTracks());
+    ui->paraWidget->setMessageBits(adaptedMessageBits);
+    ui->binWidget->setMessageBits(adaptedMessageBits);
 }
 
 

@@ -21,6 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
     Model * _model;
+    void updateMessageBits();
 
 public slots:
     void onTrackSliderValueChanged(int sliderValue);

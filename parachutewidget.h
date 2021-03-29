@@ -31,7 +31,6 @@ public:
     void setNumOfSectors(int numSectors);
     int getNumOfTracks();
     int getNumOfSectors();
-    short * getMessageBits();
     void setMessageBits(short * bits);
 
 };

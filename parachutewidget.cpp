@@ -32,10 +32,10 @@ void ParachuteWidget::drawTrapeze(int index, int bit)
     float halfWidth = this->width() / 2;
     float halfHeight = this->height() / 2;
 
-    float firstInnerSummetCoord[] = {halfWidth + innerRadius * cos(firstAngle), halfHeight + innerRadius * sin(firstAngle)};
-    float secondInnerSummetCoord[] = {halfWidth + innerRadius * cos(secondAngle), halfHeight + innerRadius * sin(secondAngle)};
-    float firstOuterSummetCoord[] = {halfWidth + outerRadius * cos(firstAngle), halfHeight + outerRadius * sin(firstAngle)};
-    float secondOuterSummetCoord[] = {halfWidth + outerRadius * cos(secondAngle), halfHeight + outerRadius * sin(secondAngle)};
+    double firstInnerSummetCoord[] = {halfWidth + innerRadius * cos(firstAngle), halfHeight + innerRadius * sin(firstAngle)};
+    double secondInnerSummetCoord[] = {halfWidth + innerRadius * cos(secondAngle), halfHeight + innerRadius * sin(secondAngle)};
+    double firstOuterSummetCoord[] = {halfWidth + outerRadius * cos(firstAngle), halfHeight + outerRadius * sin(firstAngle)};
+    double secondOuterSummetCoord[] = {halfWidth + outerRadius * cos(secondAngle), halfHeight + outerRadius * sin(secondAngle)};
 
     QPainterPath trapezePath;
     trapezePath.moveTo(firstInnerSummetCoord[0], firstInnerSummetCoord[1]);
@@ -68,10 +68,6 @@ void ParachuteWidget::setNumOfTracks(int numTracks) {
 
 void ParachuteWidget::setNumOfSectors(int numSectors) {
     _numOfSectors = numSectors;
-}
-
-short * ParachuteWidget::getMessageBits() {
-    return _messageBits;
 }
 
 void ParachuteWidget::setMessageBits(short * bits) {
