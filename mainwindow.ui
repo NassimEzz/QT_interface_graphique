@@ -17,9 +17,6 @@
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="messageText"/>
-      </item>
       <item row="3" column="0">
        <widget class="QLabel" name="messageLabel">
         <property name="text">
@@ -36,6 +33,9 @@
          <widget class="CircleWidget" name="binWidget" native="true"/>
         </item>
        </layout>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="messageText"/>
       </item>
      </layout>
     </item>
@@ -64,8 +64,15 @@
      <string>A&amp;bout</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionLangue"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuAbout"/>
+   <addaction name="menuOptions"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -89,6 +96,11 @@
   <action name="actionQuit">
    <property name="text">
     <string>&amp;Quit</string>
+   </property>
+  </action>
+  <action name="actionLangue">
+   <property name="text">
+    <string>Langue</string>
    </property>
   </action>
  </widget>
