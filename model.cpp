@@ -2,16 +2,7 @@
 
 Model::Model(QString msg)
 {
-    _message = msg;
-    _msgLength=msg.length();
-    _binMessage = new short*[msg.length()];
-
-    for (int i = 0; i < msg.length(); i++) {
-        _binMessage[i] = new short[7]();
-    }
-
     convertMessage();
-
 }
 
 
@@ -34,10 +25,16 @@ short * Model::convertChar(const char c) {
     return binArray;
 }
 
-void Model::convertMessage() {
+void Model::convertMessage(QString msg) {
+    _message = msg;
+    _msgLength=msg.length();
+    _binMessage = new short*[msg.length()];
+
     for (int i = 0; i < _message.length(); i++) {
+        _binMessage[i] = new short[7]();
         _binMessage[i] = convertChar(_message.at(i).toLatin1());
     }
+
 }
 
 int Model::getBit(int bit) {
@@ -59,5 +56,5 @@ int Model::getMsgLength(){
 }
 
 void Model::setMessage(QString msg) {
-    Model(msg);
+    convertMessage(msg);
 }
