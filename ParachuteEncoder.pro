@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     model.cpp \
-    circlewidget.cpp
+    circlewidget.cpp \
+    parachutewidget.cpp 
 
 HEADERS += \
         mainwindow.h \
     model.h \
-    circlewidget.h
+    circlewidget.h \
+    parachutewidget.h 
 
 FORMS += \
         mainwindow.ui

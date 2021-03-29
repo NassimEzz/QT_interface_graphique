@@ -30,7 +30,7 @@
       <item row="4" column="0" colspan="2">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QWidget" name="paraWidget" native="true"/>
+         <widget class="ParachuteWidget" name="paraWidget" native="true"/>
         </item>
         <item>
          <widget class="CircleWidget" name="binWidget" native="true"/>

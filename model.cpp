@@ -7,10 +7,18 @@ Model::Model(QString msg)
     binMessage = new short*[msg.length()];
 
     for (int i = 0; i < msg.length(); i++) {
-        binMessage[i] = new short[7];
+        binMessage[i] = new short[7]();
     }
 
     convertMessage();
+
+    for (int i = 0; i < msg.length(); i++) {
+        for (int j = 0; j < 7; j++) {
+            std::cout << binMessage[i][j];
+        }
+
+        std::cout << std::endl;
+    }
 }
 
 
@@ -37,6 +45,14 @@ void Model::convertMessage() {
     for (int i = 0; i < message.length(); i++) {
         binMessage[i] = convertChar(message.at(i).toLatin1());
     }
+}
+
+int Model::getBit(int bit) {
+    if (bit / 7 >= message.length()) {
+        return 0;
+    }
+
+    return binMessage[bit / 7][bit % 7];
 }
 
 
