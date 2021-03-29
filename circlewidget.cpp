@@ -1,15 +1,14 @@
 #include "circlewidget.h"
 #include "model.h"
 
-CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("ENSICAEN_RULES")
+CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _messageBits(nullptr), _nbcol(0), _nbrow(7)
 {
-    _nbcol= _m.getMsgLength();
-    _nbrow= 7;
+
 }
 
 void CircleWidget::paintEvent(QPaintEvent *e){
     _painter.begin(this);
-    drawCircle();
+    if (_nbcol != 0) {drawCircle();}
     _painter.end();
 }
 
@@ -22,9 +21,9 @@ void CircleWidget::drawCircle(){
     int colCoord=0;
 
     for(int k=0;k<_nbcol;k++){
-        int rowCoord=20;
+        int rowCoord=40;
         for(int i=0 ; i<_nbrow;i++){
-            if(_m.getBit(i+k*_nbrow)==0){
+            if(_messageBits[i+k*_nbrow]==0){
                 _painter.setBrush(QBrush(Qt::black));
                 _painter.drawEllipse(QRect(colCoord,rowCoord,circleRadius,circleRadius));
             }else{
@@ -36,4 +35,12 @@ void CircleWidget::drawCircle(){
         }
         colCoord+=widthShift;
     }
+}
+
+void CircleWidget::setNumOfColumns(int numCol) {
+    _nbcol = numCol;
+}
+
+void CircleWidget::setMessageBits(short * messageBits) {
+    _messageBits = messageBits;
 }

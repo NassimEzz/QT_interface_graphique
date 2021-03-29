@@ -17,7 +17,7 @@ class ParachuteWidget : public QWidget
 
 private:
     QPainter _painter;
-    Model _model;
+    short * _messageBits;
     float _parachuteRadius;
     int _numOfTracks;
     int _numOfSectors;
@@ -27,10 +27,12 @@ private:
 public:
     explicit ParachuteWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
+    void setNumOfTracks(int numTracks);
+    void setNumOfSectors(int numSectors);
+    int getNumOfTracks();
+    int getNumOfSectors();
+    void setMessageBits(short * bits);
 
-signals:
-
-public slots:
 };
 
 #endif // PARACHUTEWIDGET_H

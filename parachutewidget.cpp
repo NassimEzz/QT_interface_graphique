@@ -1,6 +1,6 @@
 #include "parachutewidget.h"
 
-ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _model("ENSICAEN_RULES"), _numOfTracks(5), _numOfSectors(21)
+ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _messageBits(nullptr), _numOfTracks(0), _numOfSectors(0)
 {
 
 }
@@ -8,11 +8,12 @@ ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(th
 void ParachuteWidget::paintEvent(QPaintEvent*)
 {
     _painter.begin(this);
-    for (int k = 0; k < 105; k++) {
-        drawTrapeze(k, _model.getBit(k));
+    if (_messageBits != nullptr) {
+        for (int k = 0; k < _numOfTracks * _numOfSectors; k++) {
+            drawTrapeze(k, _messageBits[k]);
+        }
     }
     _painter.end();
-
 }
 
 void ParachuteWidget::drawTrapeze(int index, int bit)
@@ -31,10 +32,10 @@ void ParachuteWidget::drawTrapeze(int index, int bit)
     float halfWidth = this->width() / 2;
     float halfHeight = this->height() / 2;
 
-    float firstInnerSummetCoord[] = {halfWidth + innerRadius * cos(firstAngle), halfHeight + innerRadius * sin(firstAngle)};
-    float secondInnerSummetCoord[] = {halfWidth + innerRadius * cos(secondAngle), halfHeight + innerRadius * sin(secondAngle)};
-    float firstOuterSummetCoord[] = {halfWidth + outerRadius * cos(firstAngle), halfHeight + outerRadius * sin(firstAngle)};
-    float secondOuterSummetCoord[] = {halfWidth + outerRadius * cos(secondAngle), halfHeight + outerRadius * sin(secondAngle)};
+    double firstInnerSummetCoord[] = {halfWidth + innerRadius * cos(firstAngle), halfHeight + innerRadius * sin(firstAngle)};
+    double secondInnerSummetCoord[] = {halfWidth + innerRadius * cos(secondAngle), halfHeight + innerRadius * sin(secondAngle)};
+    double firstOuterSummetCoord[] = {halfWidth + outerRadius * cos(firstAngle), halfHeight + outerRadius * sin(firstAngle)};
+    double secondOuterSummetCoord[] = {halfWidth + outerRadius * cos(secondAngle), halfHeight + outerRadius * sin(secondAngle)};
 
     QPainterPath trapezePath;
     trapezePath.moveTo(firstInnerSummetCoord[0], firstInnerSummetCoord[1]);
@@ -50,4 +51,25 @@ void ParachuteWidget::drawTrapeze(int index, int bit)
     if (bit == 1) {
         _painter.fillPath(trapezePath, QBrush(QColor("red")));
     }
+}
+
+
+int ParachuteWidget::getNumOfTracks() {
+    return _numOfTracks;
+}
+
+int ParachuteWidget::getNumOfSectors() {
+    return _numOfSectors;
+}
+
+void ParachuteWidget::setNumOfTracks(int numTracks) {
+    _numOfTracks = numTracks;
+}
+
+void ParachuteWidget::setNumOfSectors(int numSectors) {
+    _numOfSectors = numSectors;
+}
+
+void ParachuteWidget::setMessageBits(short * bits) {
+    _messageBits = bits;
 }

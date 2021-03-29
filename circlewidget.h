@@ -8,16 +8,21 @@
 class CircleWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit CircleWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
+    void setNumOfColumns(int numCol);
+    void setMessageBits(short * messageBits);
 
 private:
-    void drawCircle();
     QPainter _painter;
     short _nbcol;
     short _nbrow;
-    Model _m;
+    short * _messageBits;
+
+    void drawCircle();
+
 signals:
 
 public slots:
