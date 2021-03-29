@@ -27,15 +27,13 @@ private:
 public:
     explicit ParachuteWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
+    void setNumOfTracks(int numTracks);
+    void setNumOfSectors(int numSectors);
     int getNumOfTracks();
     int getNumOfSectors();
     short * getMessageBits();
+    void setMessageBits(short * bits);
 
-signals:
-
-public slots:
-    void onTrackSliderValueChanged(int sliderValue);
-    void onSectorSliderValueChanged(int sliderValue);
 };
 
 #endif // PARACHUTEWIDGET_H

@@ -1,6 +1,6 @@
 #include "parachutewidget.h"
 
-ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _numOfTracks(0), _numOfSectors(0)
+ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _messageBits(nullptr), _numOfTracks(0), _numOfSectors(0)
 {
 
 }
@@ -8,8 +8,10 @@ ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(th
 void ParachuteWidget::paintEvent(QPaintEvent*)
 {
     _painter.begin(this);
-    for (int k = 0; k < _numOfTracks * _numOfSectors; k++) {
-        drawTrapeze(k, _messageBits[k]);
+    if (_messageBits != nullptr) {
+        for (int k = 0; k < _numOfTracks * _numOfSectors; k++) {
+            drawTrapeze(k, _messageBits[k]);
+        }
     }
     _painter.end();
 }
@@ -51,17 +53,6 @@ void ParachuteWidget::drawTrapeze(int index, int bit)
     }
 }
 
-void ParachuteWidget::onTrackSliderValueChanged(int sliderValue) {
-    _numOfTracks = sliderValue;
-    _messageBits = new short[_numOfSectors * _numOfTracks];
-    repaint();
-}
-
-void ParachuteWidget::onSectorSliderValueChanged(int sliderValue) {
-    _numOfSectors = sliderValue;
-    _messageBits = new short[_numOfSectors * _numOfTracks];
-    repaint();
-}
 
 int ParachuteWidget::getNumOfTracks() {
     return _numOfTracks;
@@ -71,6 +62,18 @@ int ParachuteWidget::getNumOfSectors() {
     return _numOfSectors;
 }
 
-short ** getMessageBits() {
+void ParachuteWidget::setNumOfTracks(int numTracks) {
+    _numOfTracks = numTracks;
+}
+
+void ParachuteWidget::setNumOfSectors(int numSectors) {
+    _numOfSectors = numSectors;
+}
+
+short * ParachuteWidget::getMessageBits() {
     return _messageBits;
+}
+
+void ParachuteWidget::setMessageBits(short * bits) {
+    _messageBits = bits;
 }

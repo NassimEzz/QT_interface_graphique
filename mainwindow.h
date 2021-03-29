@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QString>
 #include "model.h"
 
 
@@ -20,6 +21,11 @@ public:
 private:
     Ui::MainWindow *ui;
     Model * _model;
+
+public slots:
+    void onTrackSliderValueChanged(int sliderValue);
+    void onSectorSliderValueChanged(int sliderValue);
+    void onMessageChanged(QString message);
 };
 
 #endif // MAINWINDOW_H

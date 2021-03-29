@@ -46,8 +46,18 @@ int Model::getBit(int bit) {
 }
 
 
-short ** Model::getbinMessage(){
+short ** Model::getBinMessage(){
     return _binMessage;
+}
+
+short * Model::getBinMessage(int size) {
+    short * binMessage = new short[size];
+
+    for (int i = 0; i < size; i++) {
+        binMessage[i] = getBit(i);
+    }
+
+    return binMessage;
 }
 
 
