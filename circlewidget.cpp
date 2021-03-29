@@ -3,8 +3,7 @@
 
 CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("ENSICAEN_RULES")
 {
-    _nbcol= _m.getMsgLength();
-    _nbrow= 7;
+
 }
 
 void CircleWidget::paintEvent(QPaintEvent *e){
@@ -14,6 +13,8 @@ void CircleWidget::paintEvent(QPaintEvent *e){
 }
 
 void CircleWidget::drawCircle(){
+    _nbcol= _m.getMsgLength();
+    _nbrow= 7;
     int height = this->height();
     int width = this->width();
     int heightShift = height/8;
@@ -36,4 +37,9 @@ void CircleWidget::drawCircle(){
         }
         colCoord+=widthShift;
     }
+}
+
+void CircleWidget::newMessage(QString msg){
+    _m.setMessage(msg);
+    repaint();
 }

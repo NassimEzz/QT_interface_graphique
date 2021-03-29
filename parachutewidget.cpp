@@ -51,3 +51,8 @@ void ParachuteWidget::drawTrapeze(int index, int bit)
         _painter.fillPath(trapezePath, QBrush(QColor("red")));
     }
 }
+
+void ParachuteWidget::newMessage(QString msg){
+    _model.setMessage(msg);
+    repaint();
+}

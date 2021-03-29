@@ -31,6 +31,7 @@ public:
 signals:
 
 public slots:
+    void newMessage(QString msg);
 };
 
 #endif // PARACHUTEWIDGET_H
