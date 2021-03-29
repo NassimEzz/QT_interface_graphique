@@ -1,6 +1,6 @@
 #include "parachutewidget.h"
 
-ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _model("ENSICAEN_RULES"), _numOfTracks(5), _numOfSectors(21)
+ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _numOfTracks(0), _numOfSectors(0)
 {
 
 }
@@ -8,11 +8,10 @@ ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(th
 void ParachuteWidget::paintEvent(QPaintEvent*)
 {
     _painter.begin(this);
-    for (int k = 0; k < 105; k++) {
-        drawTrapeze(k, _model.getBit(k));
+    for (int k = 0; k < _numOfTracks * _numOfSectors; k++) {
+        drawTrapeze(k, _messageBits[k]);
     }
     _painter.end();
-
 }
 
 void ParachuteWidget::drawTrapeze(int index, int bit)
@@ -50,4 +49,28 @@ void ParachuteWidget::drawTrapeze(int index, int bit)
     if (bit == 1) {
         _painter.fillPath(trapezePath, QBrush(QColor("red")));
     }
+}
+
+void ParachuteWidget::onTrackSliderValueChanged(int sliderValue) {
+    _numOfTracks = sliderValue;
+    _messageBits = new short[_numOfSectors * _numOfTracks];
+    repaint();
+}
+
+void ParachuteWidget::onSectorSliderValueChanged(int sliderValue) {
+    _numOfSectors = sliderValue;
+    _messageBits = new short[_numOfSectors * _numOfTracks];
+    repaint();
+}
+
+int ParachuteWidget::getNumOfTracks() {
+    return _numOfTracks;
+}
+
+int ParachuteWidget::getNumOfSectors() {
+    return _numOfSectors;
+}
+
+short ** getMessageBits() {
+    return _messageBits;
 }
