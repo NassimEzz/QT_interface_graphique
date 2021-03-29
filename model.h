@@ -16,10 +16,14 @@ public:
 
 
 private:
-    QString message;
+    QString _message;
     int _msgLength;
-    short ** binMessage;
+    short ** _binMessage;
     short * convertChar(const char c);
+
+public slots:
+    void setMessage(QString msg);
+
 };
 
 #endif // MODEL_H

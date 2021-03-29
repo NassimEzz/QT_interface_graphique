@@ -1,7 +1,7 @@
 #include "circlewidget.h"
 #include "model.h"
 
-CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("tropforttoicpaspossible")
+CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _m("ENSICAEN_RULES")
 {
     _nbcol= _m.getMsgLength();
     _nbrow= 7;
