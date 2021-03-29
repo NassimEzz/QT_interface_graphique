@@ -2,7 +2,7 @@
 
 Model::Model(QString msg)
 {
-    convertMessage();
+    convertMessage(msg);
 }
 
 
