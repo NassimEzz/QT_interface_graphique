@@ -33,7 +33,7 @@
          <widget class="ParachuteWidget" name="paraWidget" native="true"/>
         </item>
         <item>
-         <widget class="QWidget" name="binWidget" native="true"/>
+         <widget class="CircleWidget" name="binWidget" native="true"/>
         </item>
        </layout>
       </item>
@@ -95,9 +95,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>ParachuteWidget</class>
+   <class>CircleWidget</class>
    <extends>QWidget</extends>
-   <header>parachutewidget.h</header>
+   <header>circlewidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
