@@ -38,3 +38,8 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
+
+TRANSLATIONS = para_fr.ts
+
+RESOURCES += \
+    resources.qrc
