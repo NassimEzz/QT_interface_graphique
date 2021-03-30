@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sectorSlider, &QSlider::valueChanged, ui->sectorSpinBox, &QSpinBox::setValue);
     connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->sectorSlider, &QSlider::setValue);
     connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
-    connect(ui->actionQuit,SIGNAL(triggered(bool)),this,SLOT(close()));
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
@@ -55,7 +53,4 @@ void MainWindow::updateMessageBits() {
     ui->binWidget->setMessageBits(adaptedMessageBits);
 }
 
-void MainWindow::on_actionOpen_triggered()
-{
-    QString file = QFileDialog::getOpenFileName(this,"Choose a file","/home/eleves/promo22/info/ezzayani","Text files (*.txt)");
-}
+
