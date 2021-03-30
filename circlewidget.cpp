@@ -13,6 +13,8 @@ void CircleWidget::paintEvent(QPaintEvent *e){
 }
 
 void CircleWidget::drawCircle(){
+    _nbcol= _m.getMsgLength();
+    _nbrow= 7;
     int height = this->height();
     int width = this->width();
     int heightShift = height/8;
