@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFileDialog>
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sectorSlider, &QSlider::valueChanged, ui->sectorSpinBox, &QSpinBox::setValue);
     connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->sectorSlider, &QSlider::setValue);
     connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
+    connect(ui->actionQuit,SIGNAL(triggered(bool)),this,SLOT(close()));
+
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
@@ -54,3 +58,49 @@ void MainWindow::updateMessageBits() {
 }
 
 
+
+void MainWindow::on_actionOpen_triggered()
+{
+    QString path = QFileDialog::getOpenFileName(this,"Choose a file","/home/eleves/promo22/info/ezzayani","Text files (*.txt)");
+    std::cout << path.toUtf8().constData() << std::endl;
+    QFile file(path);
+
+    if(!file.open(QIODevice::ReadOnly)){
+        qDebug() << "error opening file: " << file.error();
+        return;
+    }
+
+    QTextStream instream(&file);
+
+    QString nbPistes = instream.readLine();
+    QString nbSecteurs = instream.readLine();
+    QString message = instream.readLine();
+
+
+    ui->messageText->setText(message);
+    ui->sectorSlider->setValue(nbSecteurs.toInt());
+    ui->trackSlider->setValue(nbPistes.toInt());
+    file.close();
+
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    QString path = QFileDialog::getSaveFileName(this,tr("Save File"),"/home/eleves/promo22/info/ezzayani/parachute.txt",tr("Text files (*.txt)"));
+    QFile file(path);
+
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+        qDebug() << "error opening file: " << file.error();
+        return;
+    }
+
+    QTextStream outstream(&file);
+
+
+    outstream << QString::number(ui->trackSlider->value()) << '\n';
+    outstream << QString::number(ui->sectorSlider->value()) << '\n';
+    outstream << ui->messageText->text();
+
+    file.close();
+
+}

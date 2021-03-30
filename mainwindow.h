@@ -27,6 +27,9 @@ public slots:
     void onTrackSliderValueChanged(int sliderValue);
     void onSectorSliderValueChanged(int sliderValue);
     void onMessageChanged(QString message);
+private slots:
+    void on_actionOpen_triggered();
+    void on_actionSave_triggered();
 };
 
 #endif // MAINWINDOW_H
