@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QString>
 #include <QMessageBox>
+#include <QPropertyAnimation>
 #include "model.h"
 
 
@@ -22,7 +23,10 @@ public:
 private:
     Ui::MainWindow *ui;
     Model * _model;
+    QPropertyAnimation * _animation;
     void updateMessageBits();
+    void animateTracks();
+    void animateSectors();
 
 public slots:
     void onTrackSliderValueChanged(int sliderValue);
@@ -33,6 +37,7 @@ public slots:
     void onSecondaryColorChanged(QColor color);
     void onRandomButtonPressed();
     void onCentralDiskToggled(bool checked);
+    void onAnimationFinished();
 
 private slots:
     void on_actionOpen_triggered();

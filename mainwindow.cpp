@@ -29,11 +29,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->randomPrimaryButton, SIGNAL(pressed()), this, SLOT(onRandomButtonPressed()));
     connect(ui->diskCheckBox, SIGNAL(toggled(bool)), this, SLOT(onCentralDiskToggled(bool)));
 
-
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
+    ui->messageText->setText("ENSICAEN_RULES");
 
-
+    ui->trackSlider->setEnabled(false);
+    ui->sectorSlider->setEnabled(false);
+    ui->trackSpinBox->setEnabled(false);
+    ui->sectorSpinBox->setEnabled(false);
+    animateTracks();
+    animateSectors();
 }
 
 MainWindow::~MainWindow()
@@ -154,3 +159,35 @@ void MainWindow::onCentralDiskToggled(bool checked)
 
     ui->paraWidget->repaint();
 }
+
+void MainWindow::animateTracks()
+{
+    _animation = new QPropertyAnimation(ui->trackSlider, "sliderPosition");
+
+    connect(_animation, SIGNAL(finished()), this, SLOT(onAnimationFinished()));
+
+    _animation->setDuration(1500);
+    _animation->setStartValue(0);
+    _animation->setEndValue(5);
+
+    _animation->start();
+}
+
+void MainWindow::animateSectors()
+{
+    _animation = new QPropertyAnimation(ui->sectorSlider, "sliderPosition");
+    _animation->setDuration(1500);
+    _animation->setStartValue(0);
+    _animation->setEndValue(20);
+
+    _animation->start();
+}
+
+void MainWindow::onAnimationFinished()
+{
+    ui->trackSlider->setEnabled(true);
+    ui->sectorSlider->setEnabled(true);
+    ui->trackSpinBox->setEnabled(true);
+    ui->sectorSpinBox->setEnabled(true);
+}
+
