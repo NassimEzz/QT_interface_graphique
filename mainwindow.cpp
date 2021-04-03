@@ -60,6 +60,8 @@ void MainWindow::onSectorSliderValueChanged(int sliderValue) {
 void MainWindow::updateMessageBits() {
     short * adaptedMessageBits = _model->getBinMessage(ui->paraWidget->getNumOfSectors() * ui->paraWidget->getNumOfTracks());
     ui->paraWidget->setMessageBits(adaptedMessageBits);
+
+    adaptedMessageBits = _model->getBinMessage(_model->getMsgLength()*7);
     ui->binWidget->setMessageBits(adaptedMessageBits);
 }
 
