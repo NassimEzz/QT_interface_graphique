@@ -158,12 +158,14 @@ void MainWindow::on_actionMode_7_par_7_triggered(bool checked)
 {
     if(ui->actionMode_7_par_7->isChecked()){
         ui->sectorSpinBox->setSingleStep(7);
+        ui->sectorSlider->setValue((int)((ui->sectorSpinBox->value())/7));
         ui->sectorSlider->setMaximum(14);
+
 
     } else {
         ui->sectorSpinBox->setSingleStep(1);
-        ui->sectorSlider->setMaximum(100);
-
+        ui->sectorSlider->setMaximum(98);
+        ui->sectorSlider->setValue(ui->sectorSpinBox->value());
     }
 
 }
