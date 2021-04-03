@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     _model = new Model("");
 
+    qsrand(time(0));
+
     ui->secondaryWidget->setColor("white");
 
     connect(ui->trackSlider, &QSlider::valueChanged, this, &MainWindow::onTrackSliderValueChanged);
@@ -137,6 +139,5 @@ void MainWindow::onSecondaryColorChanged(QColor color)
 
 void MainWindow::onRandomButtonPressed()
 {
-    qsrand(time(0));
     ui->primaryWidget->setColor(QColor(qrand()%255, qrand()%255, qrand()%255));
 }
