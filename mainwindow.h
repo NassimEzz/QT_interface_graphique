@@ -27,12 +27,15 @@ private:
 public slots:
     void onTrackSliderValueChanged(int sliderValue);
     void onSectorSliderValueChanged(int sliderValue);
+    void sliderToSector(int sliderValue);
+    void sectorToSlider(int sectorValue);
     void onMessageChanged(QString message);
 private slots:
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
     void OnHelpMenu();
     void on_actionCaractere_de_reference_triggered();
+    void on_actionMode_7_par_7_triggered(bool checked);
 };
 
 #endif // MAINWINDOW_H

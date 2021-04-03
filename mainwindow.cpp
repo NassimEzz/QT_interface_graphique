@@ -14,9 +14,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->trackSlider, &QSlider::valueChanged, this, &MainWindow::onTrackSliderValueChanged);
     connect(ui->trackSlider, &QSlider::valueChanged, ui->trackSpinBox, &QSpinBox::setValue);
     connect(ui->trackSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->trackSlider, &QSlider::setValue);
+
     connect(ui->sectorSlider, &QSlider::valueChanged, this, &MainWindow::onSectorSliderValueChanged);
-    connect(ui->sectorSlider, &QSlider::valueChanged, ui->sectorSpinBox, &QSpinBox::setValue);
-    connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->sectorSlider, &QSlider::setValue);
+    connect(ui->sectorSlider, &QSlider::valueChanged, this, &MainWindow::sliderToSector);
+    connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), this, &MainWindow::sectorToSlider);
+
     connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
     connect(ui->actionQuit,SIGNAL(triggered(bool)),this,SLOT(close()));
     connect(ui->menuAbout, SIGNAL(aboutToShow()), this, SLOT(OnHelpMenu()));
@@ -24,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
+    ui->actionMode_7_par_7->setCheckable(true);
+
 
 
 }
@@ -31,6 +35,22 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::sliderToSector(int sliderValue){
+    if(ui->actionMode_7_par_7->isChecked()){
+        ui->sectorSpinBox->setValue(sliderValue*7);
+    } else {
+        ui->sectorSpinBox->setValue(sliderValue);
+    }
+
+}
+void MainWindow::sectorToSlider(int sectorValue){
+    if(ui->actionMode_7_par_7->isChecked()){
+        ui->sectorSlider->setValue(sectorValue/7);
+    } else {
+        ui->sectorSlider->setValue(sectorValue);
+    }
 }
 
 void MainWindow::onMessageChanged(QString message) {
@@ -124,5 +144,19 @@ void MainWindow::on_actionCaractere_de_reference_triggered()
         ui->caracRef->setText(c);
         ui->messageText->setText("");
      }
+
+}
+
+void MainWindow::on_actionMode_7_par_7_triggered(bool checked)
+{
+    if(ui->actionMode_7_par_7->isChecked()){
+        ui->sectorSpinBox->setSingleStep(7);
+        ui->sectorSlider->setMaximum(14);
+
+    } else {
+        ui->sectorSpinBox->setSingleStep(1);
+        ui->sectorSlider->setMaximum(100);
+
+    }
 
 }
