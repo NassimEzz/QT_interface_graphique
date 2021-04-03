@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->menuAbout, SIGNAL(aboutToShow()), this, SLOT(OnHelpMenu()));
     connect(ui->primaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onPrimaryColorChanged(QColor)));
     connect(ui->secondaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onSecondaryColorChanged(QColor)));
+    connect(ui->randomPrimaryButton, SIGNAL(pressed()), this, SLOT(onRandomButtonPressed()));
 
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
@@ -132,4 +133,10 @@ void MainWindow::onSecondaryColorChanged(QColor color)
     ui->binWidget->setSecondary(color);
     ui->paraWidget->repaint();
     ui->binWidget->repaint();
+}
+
+void MainWindow::onRandomButtonPressed()
+{
+    qsrand(time(0));
+    ui->primaryWidget->setColor(QColor(qrand()%255, qrand()%255, qrand()%255));
 }

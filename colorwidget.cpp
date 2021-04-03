@@ -8,6 +8,7 @@ ColorWidget::ColorWidget(QWidget *parent) : QWidget(parent), _painter(this), _co
 void ColorWidget::setColor(QColor color)
 {
     _color = color;
+    emit colorChanged(_color);
     repaint();
 }
 

@@ -31,6 +31,7 @@ public slots:
     void OnHelpMenu();
     void onPrimaryColorChanged(QColor color);
     void onSecondaryColorChanged(QColor color);
+    void onRandomButtonPressed();
 
 private slots:
     void on_actionOpen_triggered();
