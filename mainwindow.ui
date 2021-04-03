@@ -11,24 +11,58 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Parachute Encoding</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="messageText"/>
-      </item>
-      <item row="3" column="0">
+     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0">
+      <item row="7" column="0">
        <widget class="QLabel" name="messageLabel">
         <property name="text">
          <string>Message:  </string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0" colspan="2">
-       <layout class="QHBoxLayout" name="horizontalLayout">
+      <item row="3" column="0">
+       <widget class="QLabel" name="sectorSliderLabel">
+        <property name="text">
+         <string>Number of Sectors: </string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="trackSliderLabel">
+        <property name="text">
+         <string>Number of Tracks:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSlider" name="sectorSlider">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QSpinBox" name="trackSpinBox"/>
+      </item>
+      <item row="3" column="2">
+       <widget class="QSpinBox" name="sectorSpinBox"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSlider" name="trackSlider">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1" colspan="2">
+       <widget class="QLineEdit" name="messageText"/>
+      </item>
+      <item row="8" column="0" colspan="3">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
         <item>
          <widget class="ParachuteWidget" name="paraWidget" native="true"/>
         </item>
@@ -47,12 +81,12 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>F&amp;ile</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
@@ -61,7 +95,7 @@
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
-     <string>A&amp;bout</string>
+     <string>&amp;About</string>
     </property>
    </widget>
    <addaction name="menuFile"/>
@@ -80,15 +114,24 @@
    <property name="text">
     <string>&amp;Open</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionSave">
    <property name="text">
     <string>&amp;Save</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionQuit">
    <property name="text">
     <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
  </widget>

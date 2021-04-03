@@ -10,7 +10,8 @@ class Model
 public:
     Model(QString msg);
     void convertMessage(QString msg);
-    short ** getbinMessage();
+    short ** getBinMessage();
+    short * getBinMessage(int size);
     int getBit(int bit);
     int getMsgLength();
 
