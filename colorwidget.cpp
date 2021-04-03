@@ -24,6 +24,8 @@ void ColorWidget::paintEvent(QPaintEvent *event)
 void ColorWidget::mousePressEvent(QMouseEvent *event)
 {
     QColor selectedColor = QColorDialog::getColor();
-    setColor(selectedColor);
-    emit colorChanged(_color);
+    if (selectedColor.isValid()) {
+        setColor(selectedColor);
+        emit colorChanged(_color);
+    }
 }
