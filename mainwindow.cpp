@@ -121,4 +121,5 @@ void MainWindow::on_actionCaractere_de_reference_triggered()
     QString c ="";
     c+=_model->getCaracRef();
     ui->caracRef->setText(c);
+    ui->messageText->setText("");
 }
