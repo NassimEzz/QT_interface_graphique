@@ -32,6 +32,7 @@ public slots:
     void onPrimaryColorChanged(QColor color);
     void onSecondaryColorChanged(QColor color);
     void onRandomButtonPressed();
+    void onCentralDiskToggled(bool checked);
 
 private slots:
     void on_actionOpen_triggered();
