@@ -51,12 +51,30 @@
        </widget>
       </item>
       <item row="8" column="0" colspan="4">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
         <item>
-         <widget class="ParachuteWidget" name="paraWidget" native="true"/>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Parachute View</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="ParachuteWidget" name="paraWidget" native="true"/>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item>
-         <widget class="CircleWidget" name="binWidget" native="true"/>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Binary View</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="CircleWidget" name="binWidget" native="true"/>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </item>
