@@ -1,6 +1,6 @@
 #include "parachutewidget.h"
 
-ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _messageBits(nullptr), _numOfTracks(0), _numOfSectors(0), _primary("red"), _secondary("white")
+ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _messageBits(nullptr), _numOfTracks(0), _numOfSectors(0), _primary("red"), _secondary("white"), _firstToDraw(0)
 {
 
 }
@@ -9,8 +9,8 @@ void ParachuteWidget::paintEvent(QPaintEvent*)
 {
     _painter.begin(this);
     if (_messageBits != nullptr) {
-        for (int k = 0; k < _numOfTracks * _numOfSectors; k++) {
-            drawTrapeze(k, _messageBits[k]);
+        for (int k = _firstToDraw; k < _numOfTracks * _numOfSectors; k++) {
+            drawTrapeze(k, _messageBits[k - _firstToDraw]);
         }
     }
     _painter.end();
@@ -84,4 +84,9 @@ void ParachuteWidget::setPrimary(QColor color)
 void ParachuteWidget::setSecondary(QColor color)
 {
     _secondary = color;
+}
+
+void ParachuteWidget::setFirstToDraw(int firstTrapez)
+{
+    _firstToDraw = firstTrapez;
 }

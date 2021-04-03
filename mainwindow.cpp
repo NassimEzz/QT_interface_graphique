@@ -22,11 +22,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->sectorSlider, &QSlider::setValue);
     connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
 
-    connect(ui->actionQuit,SIGNAL(triggered(bool)),this,SLOT(close()));
+    connect(ui->actionQuit,SIGNAL(triggered(bool)), this,SLOT(close()));
     connect(ui->menuAbout, SIGNAL(aboutToShow()), this, SLOT(OnHelpMenu()));
     connect(ui->primaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onPrimaryColorChanged(QColor)));
     connect(ui->secondaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onSecondaryColorChanged(QColor)));
     connect(ui->randomPrimaryButton, SIGNAL(pressed()), this, SLOT(onRandomButtonPressed()));
+    connect(ui->diskCheckBox, SIGNAL(toggled(bool)), this, SLOT(onCentralDiskToggled(bool)));
 
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
@@ -56,6 +57,7 @@ void MainWindow::onTrackSliderValueChanged(int sliderValue) {
 
 void MainWindow::onSectorSliderValueChanged(int sliderValue) {
     ui->paraWidget->setNumOfSectors(sliderValue);
+    if (ui->diskCheckBox->isChecked()) { ui->paraWidget->setFirstToDraw(sliderValue); }
     updateMessageBits();
     ui->paraWidget->repaint();
 }
@@ -140,4 +142,15 @@ void MainWindow::onSecondaryColorChanged(QColor color)
 void MainWindow::onRandomButtonPressed()
 {
     ui->primaryWidget->setColor(QColor(qrand()%255, qrand()%255, qrand()%255));
+}
+
+void MainWindow::onCentralDiskToggled(bool checked)
+{
+    if (checked) {
+        ui->paraWidget->setFirstToDraw(ui->paraWidget->getNumOfSectors());
+    } else {
+        ui->paraWidget->setFirstToDraw(0);
+    }
+
+    ui->paraWidget->repaint();
 }

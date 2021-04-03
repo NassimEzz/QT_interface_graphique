@@ -23,6 +23,7 @@ private:
     float _parachuteRadius;
     int _numOfTracks;
     int _numOfSectors;
+    int _firstToDraw;
 
     void drawTrapeze(int index, int bit);
 
@@ -36,6 +37,7 @@ public:
     void setMessageBits(short * bits);
     void setPrimary(QColor color);
     void setSecondary(QColor color);
+    void setFirstToDraw(int firstTrapez);
 
 };
 
