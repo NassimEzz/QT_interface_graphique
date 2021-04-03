@@ -36,6 +36,7 @@ private slots:
     void OnHelpMenu();
     void on_actionCaractere_de_reference_triggered();
     void on_actionMode_7_par_7_triggered(bool checked);
+    void on_actionMode_7_bits_3_triggered();
 };
 
 #endif // MAINWINDOW_H

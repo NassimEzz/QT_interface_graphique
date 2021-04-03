@@ -13,6 +13,7 @@ public:
     explicit CircleWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
     void setNumOfColumns(int numCol);
+    void setNumOfRows(int numRow);
     void setMessageBits(short * messageBits);
 
 private:

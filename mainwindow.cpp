@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
     ui->actionMode_7_par_7->setCheckable(true);
+    ui->actionMode_7_bits_3->setCheckable(true);
 
 
 
@@ -166,6 +167,22 @@ void MainWindow::on_actionMode_7_par_7_triggered(bool checked)
         ui->sectorSpinBox->setSingleStep(1);
         ui->sectorSlider->setMaximum(98);
         ui->sectorSlider->setValue(ui->sectorSpinBox->value());
+    }
+
+}
+
+void MainWindow::on_actionMode_7_bits_3_triggered()
+{
+    if(ui->actionMode_7_bits_3->isChecked()){
+        ui->binWidget->setNumOfRows(10);
+        ui->messageText->setText("");
+        _model= new Model("");
+        _model->setNbTrapeze(10);
+    } else {
+        ui->binWidget->setNumOfRows(7);
+        ui->messageText->setText("");
+        _model= new Model("");
+        _model->setNbTrapeze(7);
     }
 
 }
