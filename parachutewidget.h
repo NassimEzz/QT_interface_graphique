@@ -17,6 +17,8 @@ class ParachuteWidget : public QWidget
 
 private:
     QPainter _painter;
+    QColor _primary;
+    QColor _secondary;
     short * _messageBits;
     float _parachuteRadius;
     int _numOfTracks;
@@ -32,6 +34,8 @@ public:
     int getNumOfTracks();
     int getNumOfSectors();
     void setMessageBits(short * bits);
+    void setPrimary(QColor color);
+    void setSecondary(QColor color);
 
 };
 

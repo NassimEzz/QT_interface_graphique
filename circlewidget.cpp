@@ -1,7 +1,7 @@
 #include "circlewidget.h"
 #include "model.h"
 
-CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _messageBits(nullptr), _nbcol(0), _nbrow(7)
+CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _messageBits(nullptr), _nbcol(0), _nbrow(7), _primary("red"), _secondary("white")
 {
 
 }
@@ -24,10 +24,10 @@ void CircleWidget::drawCircle(){
         int rowCoord=40;
         for(int i=0 ; i<_nbrow;i++){
             if(_messageBits[i+k*_nbrow]==0){
-                _painter.setBrush(QBrush(Qt::black));
+                _painter.setBrush(QBrush(_secondary));
                 _painter.drawEllipse(QRect(colCoord,rowCoord,circleRadius,circleRadius));
             }else{
-                _painter.setBrush(QBrush(Qt::red));
+                _painter.setBrush(QBrush(_primary));
                 _painter.drawEllipse(QRect(colCoord,rowCoord,circleRadius,circleRadius));
             }
 
@@ -43,4 +43,12 @@ void CircleWidget::setNumOfColumns(int numCol) {
 
 void CircleWidget::setMessageBits(short * messageBits) {
     _messageBits = messageBits;
+}
+
+void CircleWidget::setPrimary(QColor color) {
+    _primary = color;
+}
+
+void CircleWidget::setSecondary(QColor color) {
+    _secondary = color;
 }
