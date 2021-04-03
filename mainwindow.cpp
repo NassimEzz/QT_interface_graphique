@@ -117,9 +117,12 @@ void MainWindow::OnHelpMenu()
 void MainWindow::on_actionCaractere_de_reference_triggered()
 {
     QString t = QInputDialog::getText(this,tr("QInputDialog::getText()"),tr("Caractère de référence"));
-    _model->setCaracRef(*(t.toUtf8().constData()));
-    QString c ="";
-    c+=_model->getCaracRef();
-    ui->caracRef->setText(c);
-    ui->messageText->setText("");
+    if(t!=""){
+        QString c ="";
+        _model->setCaracRef(*(t.toUtf8().constData()));
+        c+=_model->getCaracRef();
+        ui->caracRef->setText(c);
+        ui->messageText->setText("");
+     }
+
 }

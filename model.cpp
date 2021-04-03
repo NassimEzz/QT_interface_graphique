@@ -11,10 +11,6 @@ short * Model::convertChar(const char c) {
     short * binArray = new short[7];
 
     int charValue = (int)c - (int)_caracRef;
-    int t = (int)_caracRef;
-    std::cout << charValue << std::endl;
-
-
     int i = 0;
     while (charValue > 0) {
         binArray[6 - i] = charValue % 2;
