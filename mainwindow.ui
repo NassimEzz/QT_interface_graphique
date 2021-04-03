@@ -15,12 +15,43 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0">
-      <item row="7" column="0">
-       <widget class="QLabel" name="messageLabel">
+    <item row="1" column="1" rowspan="2">
+     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <item row="7" column="2" colspan="2">
+       <widget class="QLineEdit" name="messageText"/>
+      </item>
+      <item row="9" column="2">
+       <widget class="QLabel" name="secondaryLabel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
-         <string>Message:  </string>
+         <string>Secondary Color:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="primaryLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Primary Color:</string>
         </property>
        </widget>
       </item>
@@ -31,6 +62,22 @@
         </property>
        </widget>
       </item>
+      <item row="9" column="1">
+       <widget class="ColorWidget" name="primaryWidget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="trackSliderLabel">
         <property name="text">
@@ -38,30 +85,7 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QSlider" name="sectorSlider">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QSpinBox" name="trackSpinBox"/>
-      </item>
-      <item row="3" column="2">
-       <widget class="QSpinBox" name="sectorSpinBox"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSlider" name="trackSlider">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1" colspan="2">
-       <widget class="QLineEdit" name="messageText"/>
-      </item>
-      <item row="8" column="0" colspan="3">
+      <item row="8" column="0" colspan="4">
        <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
         <item>
          <widget class="ParachuteWidget" name="paraWidget" native="true"/>
@@ -70,6 +94,49 @@
          <widget class="CircleWidget" name="binWidget" native="true"/>
         </item>
        </layout>
+      </item>
+      <item row="1" column="2">
+       <widget class="QSlider" name="trackSlider">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QSlider" name="sectorSlider">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QSpinBox" name="sectorSpinBox"/>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="messageLabel">
+        <property name="text">
+         <string>Message:  </string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QSpinBox" name="trackSpinBox"/>
+      </item>
+      <item row="9" column="3">
+       <widget class="ColorWidget" name="secondaryWidget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -147,6 +214,12 @@
    <class>ParachuteWidget</class>
    <extends>QWidget</extends>
    <header>parachutewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ColorWidget</class>
+   <extends>QWidget</extends>
+   <header>colorwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

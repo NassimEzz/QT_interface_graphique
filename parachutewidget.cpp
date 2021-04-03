@@ -1,6 +1,6 @@
 #include "parachutewidget.h"
 
-ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _messageBits(nullptr), _numOfTracks(0), _numOfSectors(0)
+ParachuteWidget::ParachuteWidget(QWidget *parent) : QWidget(parent), _painter(this), _messageBits(nullptr), _numOfTracks(0), _numOfSectors(0), _primary("red"), _secondary("white")
 {
 
 }
@@ -49,7 +49,9 @@ void ParachuteWidget::drawTrapeze(int index, int bit)
     _painter.drawPath(trapezePath);
 
     if (bit == 1) {
-        _painter.fillPath(trapezePath, QBrush(QColor("red")));
+        _painter.fillPath(trapezePath, QBrush(_primary));
+    } else {
+        _painter.fillPath(trapezePath, QBrush(_secondary));
     }
 }
 
@@ -72,4 +74,14 @@ void ParachuteWidget::setNumOfSectors(int numSectors) {
 
 void ParachuteWidget::setMessageBits(short * bits) {
     _messageBits = bits;
+}
+
+void ParachuteWidget::setPrimary(QColor color)
+{
+    _primary = color;
+}
+
+void ParachuteWidget::setSecondary(QColor color)
+{
+    _secondary = color;
 }

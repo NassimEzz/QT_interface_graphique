@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     _model = new Model("");
 
+    ui->secondaryWidget->setColor("white");
+
     connect(ui->trackSlider, &QSlider::valueChanged, this, &MainWindow::onTrackSliderValueChanged);
     connect(ui->trackSlider, &QSlider::valueChanged, ui->trackSpinBox, &QSpinBox::setValue);
     connect(ui->trackSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->trackSlider, &QSlider::setValue);
@@ -17,8 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sectorSlider, &QSlider::valueChanged, ui->sectorSpinBox, &QSpinBox::setValue);
     connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->sectorSlider, &QSlider::setValue);
     connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
+
     connect(ui->actionQuit,SIGNAL(triggered(bool)),this,SLOT(close()));
     connect(ui->menuAbout, SIGNAL(aboutToShow()), this, SLOT(OnHelpMenu()));
+    connect(ui->primaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onPrimaryColorChanged(QColor)));
+    connect(ui->secondaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onSecondaryColorChanged(QColor)));
 
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
@@ -109,4 +114,20 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::OnHelpMenu()
 {
     QMessageBox::about(this, tr("A propos"), tr("Parachute Encoder made by Nassim and Majd.\nCopyright 2021"));
+}
+
+void MainWindow::onPrimaryColorChanged(QColor color)
+{
+    ui->paraWidget->setPrimary(color);
+    ui->binWidget->setPrimary(color);
+    ui->paraWidget->repaint();
+    ui->binWidget->repaint();
+}
+
+void MainWindow::onSecondaryColorChanged(QColor color)
+{
+    ui->paraWidget->setSecondary(color);
+    ui->binWidget->setSecondary(color);
+    ui->paraWidget->repaint();
+    ui->binWidget->repaint();
 }

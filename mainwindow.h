@@ -28,10 +28,13 @@ public slots:
     void onTrackSliderValueChanged(int sliderValue);
     void onSectorSliderValueChanged(int sliderValue);
     void onMessageChanged(QString message);
+    void OnHelpMenu();
+    void onPrimaryColorChanged(QColor color);
+    void onSecondaryColorChanged(QColor color);
+
 private slots:
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
-    void OnHelpMenu();
 };
 
 #endif // MAINWINDOW_H
