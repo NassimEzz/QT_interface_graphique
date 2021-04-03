@@ -2,6 +2,7 @@
 
 Model::Model(QString msg)
 {
+    _caracRef = '@';
     convertMessage(msg);
 }
 
@@ -9,7 +10,7 @@ Model::Model(QString msg)
 short * Model::convertChar(const char c) {
     short * binArray = new short[7];
 
-    int charValue = (int)c - 64;
+    int charValue = (int)c - (int)_caracRef;
 
     int i = 0;
     while (charValue > 0) {
@@ -67,4 +68,12 @@ int Model::getMsgLength(){
 
 void Model::setMessage(QString msg) {
     convertMessage(msg);
+}
+
+void Model::setCaracRef(char c){
+    _caracRef = c;
+}
+
+char Model::getCaracRef(){
+    return _caracRef;
 }

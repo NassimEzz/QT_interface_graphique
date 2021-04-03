@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QString>
+#include <QInputDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -109,4 +110,15 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::OnHelpMenu()
 {
     QMessageBox::about(this, tr("A propos"), tr("Parachute Encoder made by Nassim and Majd.\nCopyright 2021"));
+}
+
+
+
+void MainWindow::on_actionCaractere_de_reference_triggered()
+{
+    QString t = QInputDialog::getText(this,tr("QInputDialog::getText()"),tr("Caractère de référence"));
+    _model->setCaracRef(*(t.toUtf8().constData()));
+    QString c ="";
+    c+=_model->getCaracRef();
+    ui->caracRef->setText(c);
 }
