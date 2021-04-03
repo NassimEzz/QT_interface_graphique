@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->sectorSlider, &QSlider::setValue);
     connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
     connect(ui->actionQuit,SIGNAL(triggered(bool)),this,SLOT(close()));
+    connect(ui->menuAbout, SIGNAL(aboutToShow()), this, SLOT(OnHelpMenu()));
 
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
@@ -103,4 +104,9 @@ void MainWindow::on_actionSave_triggered()
 
     file.close();
 
+}
+
+void MainWindow::OnHelpMenu()
+{
+    QMessageBox::about(this, tr("A propos"), tr("Parachute Encoder made by Nassim and Majd.\nCopyright 2021"));
 }

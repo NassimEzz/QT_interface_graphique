@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QMessageBox>
 #include "model.h"
 
 
@@ -30,6 +31,7 @@ public slots:
 private slots:
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
+    void OnHelpMenu();
 };
 
 #endif // MAINWINDOW_H
