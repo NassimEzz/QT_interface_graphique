@@ -68,9 +68,16 @@ void MainWindow::onTrackSliderValueChanged(int sliderValue) {
 }
 
 void MainWindow::onSectorSliderValueChanged(int sliderValue) {
-    ui->paraWidget->setNumOfSectors(sliderValue);
-    updateMessageBits();
-    ui->paraWidget->repaint();
+    if(ui->actionMode_7_par_7->isChecked()){
+        ui->paraWidget->setNumOfSectors(sliderValue*7);
+        updateMessageBits();
+        ui->paraWidget->repaint();
+    } else {
+        ui->paraWidget->setNumOfSectors(sliderValue);
+        updateMessageBits();
+        ui->paraWidget->repaint();
+    }
+
 }
 
 void MainWindow::updateMessageBits() {
