@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qsrand(time(0));
 
+    ui->menuBar->addAction(ui->actionAbout); // Cannot be added in Designer
+
     ui->secondaryWidget->setColor("white");
 
     connect(ui->trackSlider, &QSlider::valueChanged, this, &MainWindow::onTrackSliderValueChanged);
@@ -23,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
 
     connect(ui->actionQuit,SIGNAL(triggered(bool)), this,SLOT(close()));
-    connect(ui->menuAbout, SIGNAL(aboutToShow()), this, SLOT(OnHelpMenu()));
+    connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(OnHelpMenu()));
     connect(ui->primaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onPrimaryColorChanged(QColor)));
     connect(ui->secondaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onSecondaryColorChanged(QColor)));
     connect(ui->randomPrimaryButton, SIGNAL(pressed()), this, SLOT(onRandomButtonPressed()));
