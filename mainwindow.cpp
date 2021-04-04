@@ -9,10 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     _model = new Model("");
+    _dark = false;
 
     qsrand(time(0));
 
     ui->menuBar->addAction(ui->actionAbout); // Cannot be added in Designer
+
+    // The following code is to create a widget that acts as a spacer in the QToolbar
+    QWidget* spacer = new QWidget();
+    spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    ui->mainToolBar->addWidget(spacer);
+    ui->mainToolBar->addAction(ui->actionDark);
 
     ui->secondaryWidget->setColor("white");
 
@@ -30,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->secondaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onSecondaryColorChanged(QColor)));
     connect(ui->randomPrimaryButton, SIGNAL(pressed()), this, SLOT(onRandomButtonPressed()));
     connect(ui->diskCheckBox, SIGNAL(toggled(bool)), this, SLOT(onCentralDiskToggled(bool)));
+    connect(ui->actionDark, SIGNAL(triggered(bool)), this, SLOT(toggleDarkTheme()));
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
@@ -127,7 +135,12 @@ void MainWindow::on_actionSave_triggered()
 
 void MainWindow::OnHelpMenu()
 {
-    QMessageBox::about(this, tr("A propos"), tr("Parachute Encoder made by Nassim and Majd.\nCopyright 2021"));
+    if (_dark) {
+        QMessageBox::about(this, tr("A propos"), tr("<font color=\"white\">Parachute Encoder made by Nassim and Majd.<br>Copyright 2021"));
+    } else {
+        QMessageBox::about(this, tr("A propos"), tr("Parachute Encoder made by Nassim and Majd.<br>Copyright 2021"));
+    }
+
 }
 
 void MainWindow::onPrimaryColorChanged(QColor color)
@@ -193,3 +206,45 @@ void MainWindow::onAnimationFinished()
     ui->sectorSpinBox->setEnabled(true);
 }
 
+void MainWindow::toggleDarkTheme() {
+    if (!_dark) {
+        this->setStyleSheet("background-color: #26282B");
+        ui->centralWidget->setStyleSheet("background-color: #353941");
+
+        QString textColorStyle("color: white;");
+        editStyleSheets(textColorStyle);
+
+        ui->actionDark->setIcon(QIcon(":/ico/light.png"));
+
+        _dark = true;
+
+    } else {
+
+        this->setStyleSheet("");
+        ui->centralWidget->setStyleSheet("");
+
+        editStyleSheets("");
+
+        ui->actionDark->setIcon(QIcon(":/ico/dark.png"));
+
+        _dark = false;
+    }
+}
+
+void MainWindow::editStyleSheets(QString style)
+{
+    ui->menuBar->setStyleSheet(style);
+    ui->menuFile->setStyleSheet(style);
+    ui->trackSliderLabel->setStyleSheet(style);
+    ui->sectorSliderLabel->setStyleSheet(style);
+    ui->messageLabel->setStyleSheet(style);
+    ui->messageText->setStyleSheet(style);
+    ui->groupBox->setStyleSheet(style);
+    ui->groupBox_2->setStyleSheet(style);
+    ui->primaryLabel->setStyleSheet(style);
+    ui->secondaryLabel->setStyleSheet(style);
+    ui->diskCheckBox->setStyleSheet(style);
+    ui->randomPrimaryButton->setStyleSheet(style);
+    ui->trackSpinBox->setStyleSheet(style);
+    ui->sectorSpinBox->setStyleSheet(style);
+}

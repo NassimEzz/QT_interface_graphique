@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>para_fr.qm</file>
-    </qresource>
-    <qresource prefix="/icons">
         <file>ico/Briefcase.ico</file>
         <file>ico/FAQ.ico</file>
         <file>ico/account.ico</file>
@@ -13,6 +11,7 @@
         <file>ico/camera.ico</file>
         <file>ico/contact.ico</file>
         <file>ico/create-ticket.ico</file>
+        <file>ico/dark.png</file>
         <file>ico/drive.ico</file>
         <file>ico/earning-statements.ico</file>
         <file>ico/event.ico</file>
@@ -21,6 +20,7 @@
         <file>ico/folder.ico</file>
         <file>ico/help-desk.ico</file>
         <file>ico/library.ico</file>
+        <file>ico/light.png</file>
         <file>ico/man.ico</file>
         <file>ico/memorycard.ico</file>
         <file>ico/message-already-read.ico</file>
