@@ -245,9 +245,15 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/ico/folder.ico</normaloff>:/icons/ico/folder.ico</iconset>
+   </property>
    <property name="text">
     <string>&amp;Open</string>
    </property>
@@ -256,6 +262,10 @@
    </property>
   </action>
   <action name="actionSave">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/ico/memorycard.ico</normaloff>:/icons/ico/memorycard.ico</iconset>
+   </property>
    <property name="text">
     <string>&amp;Save</string>
    </property>
@@ -264,6 +274,10 @@
    </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/ico/packing.ico</normaloff>:/icons/ico/packing.ico</iconset>
+   </property>
    <property name="text">
     <string>&amp;Quit</string>
    </property>
@@ -292,6 +306,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
