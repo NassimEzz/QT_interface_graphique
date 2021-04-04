@@ -117,6 +117,7 @@
     </property>
     <addaction name="actionCaractere_de_reference"/>
     <addaction name="actionMode_7_par_7"/>
+    <addaction name="actionMode_10_par_10"/>
     <addaction name="actionMode_7_bits_3"/>
    </widget>
    <addaction name="menuFile"/>
@@ -169,6 +170,11 @@
   <action name="actionMode_7_bits_3">
    <property name="text">
     <string>Mode 7 bits + 3</string>
+   </property>
+  </action>
+  <action name="actionMode_10_par_10">
+   <property name="text">
+    <string>Mode 10 par 10</string>
    </property>
   </action>
  </widget>

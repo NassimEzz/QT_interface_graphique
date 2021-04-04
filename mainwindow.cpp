@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
     ui->actionMode_7_par_7->setCheckable(true);
     ui->actionMode_7_bits_3->setCheckable(true);
+    ui->actionMode_10_par_10->setCheckable(true);
 
 
 
@@ -41,7 +42,9 @@ MainWindow::~MainWindow()
 void MainWindow::sliderToSector(int sliderValue){
     if(ui->actionMode_7_par_7->isChecked()){
         ui->sectorSpinBox->setValue(sliderValue*7);
-    } else {
+    } else if(ui->actionMode_10_par_10->isChecked()){
+        ui->sectorSpinBox->setValue(sliderValue*10);
+    }else {
         ui->sectorSpinBox->setValue(sliderValue);
     }
 
@@ -49,7 +52,9 @@ void MainWindow::sliderToSector(int sliderValue){
 void MainWindow::sectorToSlider(int sectorValue){
     if(ui->actionMode_7_par_7->isChecked()){
         ui->sectorSlider->setValue(sectorValue/7);
-    } else {
+    } else if(ui->actionMode_10_par_10->isChecked()){
+        ui->sectorSlider->setValue(sectorValue/10);
+    }else {
         ui->sectorSlider->setValue(sectorValue);
     }
 }
@@ -71,6 +76,10 @@ void MainWindow::onTrackSliderValueChanged(int sliderValue) {
 void MainWindow::onSectorSliderValueChanged(int sliderValue) {
     if(ui->actionMode_7_par_7->isChecked()){
         ui->paraWidget->setNumOfSectors(sliderValue*7);
+        updateMessageBits();
+        ui->paraWidget->repaint();
+    } else if(ui->actionMode_10_par_10->isChecked()) {
+        ui->paraWidget->setNumOfSectors(sliderValue*10);
         updateMessageBits();
         ui->paraWidget->repaint();
     } else {
@@ -155,34 +164,47 @@ void MainWindow::on_actionCaractere_de_reference_triggered()
 
 }
 
-void MainWindow::on_actionMode_7_par_7_triggered(bool checked)
+void MainWindow::on_actionMode_7_bits_3_triggered()
 {
-    if(ui->actionMode_7_par_7->isChecked()){
-        ui->sectorSpinBox->setSingleStep(7);
-        ui->sectorSlider->setValue((int)((ui->sectorSpinBox->value())/7));
-        ui->sectorSlider->setMaximum(14);
+    if(ui->actionMode_7_bits_3->isChecked()){
+        ui->binWidget->setNumOfRows(10);
+        _model->setNbTrapeze(10);
+    } else {
+        ui->binWidget->setNumOfRows(7);
+        _model->setNbTrapeze(7);
+    }
 
+}
 
+void MainWindow::on_actionMode_10_par_10_triggered()
+{
+    if(ui->actionMode_10_par_10->isChecked()){
+        if(ui->actionMode_7_par_7->isChecked()){
+            ui->actionMode_7_par_7->setChecked(false);
+        }
+        ui->sectorSpinBox->setSingleStep(10);
+        ui->sectorSlider->setValue((int)((ui->sectorSpinBox->value())/10));
+        ui->sectorSlider->setMaximum(9);
     } else {
         ui->sectorSpinBox->setSingleStep(1);
         ui->sectorSlider->setMaximum(98);
         ui->sectorSlider->setValue(ui->sectorSpinBox->value());
     }
-
 }
 
-void MainWindow::on_actionMode_7_bits_3_triggered()
+void MainWindow::on_actionMode_7_par_7_triggered()
 {
-    if(ui->actionMode_7_bits_3->isChecked()){
-        ui->binWidget->setNumOfRows(10);
-        ui->messageText->setText("");
-        _model= new Model("");
-        _model->setNbTrapeze(10);
-    } else {
-        ui->binWidget->setNumOfRows(7);
-        ui->messageText->setText("");
-        _model= new Model("");
-        _model->setNbTrapeze(7);
-    }
+    if(ui->actionMode_7_par_7->isChecked()){
 
+        if(ui->actionMode_10_par_10->isChecked()){
+            ui->actionMode_10_par_10->setChecked(false);
+        }
+        ui->sectorSpinBox->setSingleStep(7);
+        ui->sectorSlider->setValue((int)((ui->sectorSpinBox->value())/7));
+        ui->sectorSlider->setMaximum(14);
+    } else {
+        ui->sectorSpinBox->setSingleStep(1);
+        ui->sectorSlider->setMaximum(98);
+        ui->sectorSlider->setValue(ui->sectorSpinBox->value());
+    }
 }
