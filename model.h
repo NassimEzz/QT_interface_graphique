@@ -14,9 +14,6 @@ public:
     short * getBinMessage(int size);
     int getBit(int bit);
     int getMsgLength();
-    void setCaracRef(char c);
-    char getCaracRef();
-    void setNbTrapeze(int n);
 
 
 private:
@@ -24,8 +21,6 @@ private:
     int _msgLength;
     short ** _binMessage;
     short * convertChar(const char c);
-    char _caracRef;
-    int _nbtrapeze = 7;
 
 public slots:
     void setMessage(QString msg);

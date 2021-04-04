@@ -15,7 +15,7 @@ void CircleWidget::paintEvent(QPaintEvent *e){
 void CircleWidget::drawCircle(){
     int height = this->height();
     int width = this->width();
-    int heightShift = height/(_nbrow+1);
+    int heightShift = height/8;
     int widthShift = width/_nbcol;
     int circleRadius = std::min(heightShift/2,widthShift/2);
     int colCoord=0;
