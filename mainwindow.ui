@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>400</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Parachute Encoding</string>
   </property>
@@ -40,7 +46,10 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item row="7" column="2" colspan="2">
+       <widget class="QLineEdit" name="messageText"/>
+      </item>
+      <item row="1" column="1">
        <widget class="QLabel" name="sectorSliderLabel">
         <property name="text">
          <string>Number of Sectors: </string>
@@ -93,7 +102,7 @@
        </widget>
       </item>
       <item row="9" column="0" colspan="4">
-       <layout class="QHBoxLayout" name="settingsHorizontalLayout" stretch="0,0,0,0,0,0">
+       <layout class="QHBoxLayout" name="settingsHorizontalLayout" stretch="0,0,0,0,0">
         <property name="spacing">
          <number>6</number>
         </property>
@@ -104,7 +113,7 @@
          <number>0</number>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0">
+         <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
           </property>
@@ -122,19 +131,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="refCharButton">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Reference Character</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QCheckBox" name="diskCheckBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -144,49 +140,6 @@
             </property>
             <property name="text">
              <string>Empty Central Disk</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QCheckBox" name="sevenIncCheckBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>7 by 7 mode</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="tenIncCheckBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>10 by 10 mode</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="plusThreeCheckBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>7 + 3 bits</string>
             </property>
            </widget>
           </item>
@@ -261,16 +214,16 @@
         </item>
        </layout>
       </item>
-      <item row="7" column="2">
+      <item row="7" column="1">
        <widget class="QLineEdit" name="messageText"/>
       </item>
-      <item row="7" column="3">
-       <widget class="QLabel" name="refCharLabel">
+      <item row="3" column="2">
+       <widget class="QSpinBox" name="sectorSpinBox"/>
+      </item>
+      <item row="7" column="2">
+       <widget class="QLabel" name="caracRef">
         <property name="text">
          <string>@</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -296,7 +249,23 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>&amp;About</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuoptions">
+    <property name="title">
+     <string>options</string>
+    </property>
+    <addaction name="actionCaractere_de_reference"/>
+    <addaction name="actionMode_7_par_7"/>
+    <addaction name="actionMode_10_par_10"/>
+    <addaction name="actionMode_7_bits_3"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuoptions"/>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="allowedAreas">
@@ -348,6 +317,24 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
+  <action name="actionCaractere_de_reference">
+   <property name="text">
+    <string>Caractere de reference</string>
+   </property>
+  </action>
+  <action name="actionMode_7_par_7">
+   <property name="text">
+    <string>Mode 7 par 7</string>
+   </property>
+  </action>
+  <action name="actionMode_7_bits_3">
+   <property name="text">
+    <string>Mode 7 bits + 3</string>
+   </property>
+  </action>
+  <action name="actionMode_10_par_10">
+   <property name="text">
+    <string>Mode 10 par 10</string>
   <action name="actionAbout">
    <property name="text">
     <string>&amp;About</string>
