@@ -24,9 +24,11 @@ private:
     Ui::MainWindow *ui;
     Model * _model;
     QPropertyAnimation * _animation;
+    bool _dark;
     void updateMessageBits();
     void animateTracks();
     void animateSectors();
+    void editStyleSheets(QString style);
 
 public slots:
     void onTrackSliderValueChanged(int sliderValue);
@@ -38,6 +40,7 @@ public slots:
     void onRandomButtonPressed();
     void onCentralDiskToggled(bool checked);
     void onAnimationFinished();
+    void toggleDarkTheme();
 
 private slots:
     void on_actionOpen_triggered();
