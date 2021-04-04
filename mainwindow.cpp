@@ -169,9 +169,15 @@ void MainWindow::on_actionMode_7_bits_3_triggered()
     if(ui->actionMode_7_bits_3->isChecked()){
         ui->binWidget->setNumOfRows(10);
         _model->setNbTrapeze(10);
+        updateMessageBits();
+        ui->binWidget->repaint();
+        ui->paraWidget->repaint();
     } else {
         ui->binWidget->setNumOfRows(7);
         _model->setNbTrapeze(7);
+        updateMessageBits();
+        ui->binWidget->repaint();
+        ui->paraWidget->repaint();
     }
 
 }

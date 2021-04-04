@@ -2,8 +2,9 @@
 
 Model::Model(QString msg)
 {
+    _message=msg;
     _caracRef = '@';
-    convertMessage(msg);
+    convertMessage(_message);
 }
 
 
@@ -79,4 +80,5 @@ char Model::getCaracRef(){
 
 void Model::setNbTrapeze(int n){
     _nbtrapeze = n;
+    convertMessage(_message);
 }
