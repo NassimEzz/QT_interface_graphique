@@ -51,7 +51,7 @@
        </widget>
       </item>
       <item row="8" column="0" colspan="4">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
+       <layout class="QHBoxLayout" name="widgetsHorizontalLayout" stretch="0,0">
         <item>
          <widget class="QGroupBox" name="groupBox">
           <property name="title">
@@ -96,7 +96,7 @@
        </widget>
       </item>
       <item row="9" column="0" colspan="4">
-       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0,0">
+       <layout class="QHBoxLayout" name="settingsHorizontalLayout" stretch="0,0,0,0,0">
         <property name="spacing">
          <number>6</number>
         </property>
