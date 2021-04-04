@@ -193,7 +193,7 @@ void MainWindow::animateSectors()
     _animation = new QPropertyAnimation(ui->sectorSlider, "sliderPosition");
     _animation->setDuration(1500);
     _animation->setStartValue(0);
-    _animation->setEndValue(20);
+    _animation->setEndValue(21);
 
     _animation->start();
 }
