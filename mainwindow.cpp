@@ -40,12 +40,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->randomPrimaryButton, SIGNAL(pressed()), this, SLOT(onRandomButtonPressed()));
     connect(ui->diskCheckBox, SIGNAL(toggled(bool)), this, SLOT(onCentralDiskToggled(bool)));
     connect(ui->actionDark, SIGNAL(triggered(bool)), this, SLOT(toggleDarkTheme()));
+    connect(ui->refCharButton, SIGNAL(pressed()), this, SLOT(onReferenceCharacterButtonPressed()));
+    connect(ui->sevenIncCheckBox, SIGNAL(toggled(bool)), this, SLOT(onSevenIncrementTriggered()));
+    connect(ui->tenIncCheckBox, SIGNAL(toggled(bool)), this, SLOT(onTenIncrementTriggered()));
+    connect(ui->plusThreeCheckBox, SIGNAL(toggled(bool)), this, SLOT(onPlusThreeBitsTriggered()));
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
-    ui->actionMode_7_par_7->setCheckable(true);
-    ui->actionMode_7_bits_3->setCheckable(true);
-    ui->actionMode_10_par_10->setCheckable(true);
 
     ui->messageText->setText("ENSICAEN_RULES");
 
@@ -63,9 +64,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::onSectorSpinBoxValueChanged(int sectorValue){
-    if(ui->actionMode_7_par_7->isChecked()){
+    if(ui->sevenIncCheckBox->isChecked()){
         ui->sectorSlider->setValue(sectorValue/7);
-    } else if(ui->actionMode_10_par_10->isChecked()){
+    } else if(ui->tenIncCheckBox->isChecked()){
         ui->sectorSlider->setValue(sectorValue/10);
     }else {
         ui->sectorSlider->setValue(sectorValue);
@@ -87,10 +88,10 @@ void MainWindow::onTrackSliderValueChanged(int sliderValue) {
 }
 
 void MainWindow::onSectorSliderValueChanged(int sliderValue) {
-    if (ui->actionMode_7_par_7->isChecked()) {
+    if (ui->sevenIncCheckBox->isChecked()) {
         ui->sectorSpinBox->setValue(sliderValue*7);
         ui->paraWidget->setNumOfSectors(sliderValue*7);
-    } else if (ui->actionMode_10_par_10->isChecked()) {
+    } else if (ui->tenIncCheckBox->isChecked()) {
         ui->sectorSpinBox->setValue(sliderValue*10);
         ui->paraWidget->setNumOfSectors(sliderValue*10);
     } else {
@@ -277,22 +278,22 @@ void MainWindow::editStyleSheets(QString style)
 
 
 
-void MainWindow::on_actionCaractere_de_reference_triggered()
+void MainWindow::onReferenceCharacterButtonPressed()
 {
-    QString t = QInputDialog::getText(this,tr("QInputDialog::getText()"),tr("Caractère de référence"));
-    if(t!=""){
+    QString t = QInputDialog::getText(this,tr("Reference Character"),tr("Please enter the reference character:"));
+    if (t != "") {
         QString c ="";
         _model->setCaracRef(*(t.toUtf8().constData()));
         c+=_model->getCaracRef();
-        ui->caracRef->setText(c);
+        ui->refCharLabel->setText(c);
         ui->messageText->setText("");
      }
 
 }
 
-void MainWindow::on_actionMode_7_bits_3_triggered()
+void MainWindow::onPlusThreeBitsTriggered()
 {
-    if(ui->actionMode_7_bits_3->isChecked()){
+    if(ui->plusThreeCheckBox->isChecked()){
         ui->binWidget->setNumOfRows(10);
         _model->setNbTrapeze(10);
         updateMessageBits();
@@ -308,11 +309,11 @@ void MainWindow::on_actionMode_7_bits_3_triggered()
 
 }
 
-void MainWindow::on_actionMode_10_par_10_triggered()
+void MainWindow::onTenIncrementTriggered()
 {
-    if (ui->actionMode_10_par_10->isChecked()) {
-        if (ui->actionMode_7_par_7->isChecked()) {
-            ui->actionMode_7_par_7->setChecked(false);
+    if (ui->tenIncCheckBox->isChecked()) {
+        if (ui->sevenIncCheckBox->isChecked()) {
+            ui->sevenIncCheckBox->setChecked(false);
         }
 
         ui->sectorSpinBox->setSingleStep(10);
@@ -326,12 +327,12 @@ void MainWindow::on_actionMode_10_par_10_triggered()
     }
 }
 
-void MainWindow::on_actionMode_7_par_7_triggered()
+void MainWindow::onSevenIncrementTriggered()
 {
-    if (ui->actionMode_7_par_7->isChecked()){
+    if (ui->sevenIncCheckBox->isChecked()){
 
-        if (ui->actionMode_10_par_10->isChecked()) {
-            ui->actionMode_10_par_10->setChecked(false);
+        if (ui->tenIncCheckBox->isChecked()) {
+            ui->tenIncCheckBox->setChecked(false);
         }
 
         ui->sectorSpinBox->setSingleStep(7);
