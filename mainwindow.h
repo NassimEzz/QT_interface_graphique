@@ -33,6 +33,7 @@ private:
 public slots:
     void onTrackSliderValueChanged(int sliderValue);
     void onSectorSliderValueChanged(int sliderValue);
+    void onSectorSpinBoxValueChanged(int sectorValue);
     void onMessageChanged(QString message);
     void OnHelpMenu();
     void onPrimaryColorChanged(QColor color);
@@ -45,6 +46,11 @@ public slots:
 private slots:
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
+    void on_actionCaractere_de_reference_triggered();
+    void on_actionMode_7_bits_3_triggered();
+    void on_actionMode_10_par_10_triggered();
+    void on_actionMode_7_par_7_triggered();
+
 };
 
 #endif // MAINWINDOW_H

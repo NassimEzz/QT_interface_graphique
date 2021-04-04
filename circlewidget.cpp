@@ -15,7 +15,7 @@ void CircleWidget::paintEvent(QPaintEvent *e){
 void CircleWidget::drawCircle(){
     int height = this->height();
     int width = this->width();
-    int heightShift = height/8;
+    int heightShift = height/(_nbrow+1);
     int widthShift = width/_nbcol;
     int circleRadius = std::min(heightShift/2,widthShift/2);
     int colCoord=0;
@@ -44,6 +44,9 @@ void CircleWidget::setNumOfColumns(int numCol) {
 void CircleWidget::setMessageBits(short * messageBits) {
     _messageBits = messageBits;
 }
+
+void CircleWidget::setNumOfRows(int numRow){
+    _nbrow = numRow;
 
 void CircleWidget::setPrimary(QColor color) {
     _primary = color;
