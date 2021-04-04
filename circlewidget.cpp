@@ -45,6 +45,10 @@ void CircleWidget::setMessageBits(short * messageBits) {
     _messageBits = messageBits;
 }
 
+void CircleWidget::setNumOfRows(int numRow) {
+    _nbrow = numRow;
+}
+
 void CircleWidget::setPrimary(QColor color) {
     _primary = color;
 }
