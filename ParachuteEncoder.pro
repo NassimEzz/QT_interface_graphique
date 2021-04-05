@@ -24,19 +24,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    model.cpp \
-    circlewidget.cpp \
-    parachutewidget.cpp \ 
-    colorwidget.cpp
+        src/main.cpp \
+        src/mainwindow.cpp \
+    src/model.cpp \
+    src/circlewidget.cpp \
+    src/parachutewidget.cpp \ 
+    src/colorwidget.cpp
 
 HEADERS += \
-        mainwindow.h \
-    model.h \
-    circlewidget.h \
-    parachutewidget.h \ 
-    colorwidget.h
+        include/mainwindow.h \
+    include/model.h \
+    include/circlewidget.h \
+    include/parachutewidget.h \ 
+    include/colorwidget.h
 
 FORMS += \
         mainwindow.ui

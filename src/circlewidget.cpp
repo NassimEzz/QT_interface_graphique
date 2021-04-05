@@ -6,7 +6,7 @@ CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), _messageBits(null
 
 }
 
-void CircleWidget::paintEvent(QPaintEvent *e){
+void CircleWidget::paintEvent(QPaintEvent *){
     _painter.begin(this);
     if (_nbcol != 0) {drawCircle();}
     _painter.end();

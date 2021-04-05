@@ -30,13 +30,15 @@ private:
     void animateTracks();
     void animateSectors();
     void editStyleSheets(QString style);
+    void connectSignalsToSlots();
+    void initializeUI();
 
 private slots:
     void onTrackSliderValueChanged(int sliderValue);
     void onSectorSliderValueChanged(int sliderValue);
     void onSectorSpinBoxValueChanged(int sliderValue);
     void onMessageChanged(QString message);
-    void OnHelpMenu();
+    void onHelpMenu();
     void onPrimaryColorChanged(QColor color);
     void onSecondaryColorChanged(QColor color);
     void onRandomButtonPressed();

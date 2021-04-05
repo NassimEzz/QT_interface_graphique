@@ -19,12 +19,12 @@ public:
     void setSecondary(QColor color);
 
 private:
-    QPainter _painter;
-    QColor _primary;
-    QColor _secondary;
+    short * _messageBits;
     short _nbcol;
     short _nbrow;
-    short * _messageBits;
+    QColor _primary;
+    QColor _secondary;
+    QPainter _painter;
 
     void drawCircle();
 
