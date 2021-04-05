@@ -1,37 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>para_fr.qm</file>
-        <file>ico/Briefcase.ico</file>
-        <file>ico/FAQ.ico</file>
-        <file>ico/account.ico</file>
-        <file>ico/add-event.ico</file>
-        <file>ico/audio-file.ico</file>
-        <file>ico/autoship.ico</file>
-        <file>ico/basic-data.ico</file>
-        <file>ico/camera.ico</file>
-        <file>ico/contact.ico</file>
-        <file>ico/create-ticket.ico</file>
         <file>ico/dark.png</file>
-        <file>ico/drive.ico</file>
-        <file>ico/earning-statements.ico</file>
-        <file>ico/event.ico</file>
-        <file>ico/event-search.ico</file>
-        <file>ico/favorites.ico</file>
         <file>ico/folder.ico</file>
-        <file>ico/help-desk.ico</file>
-        <file>ico/library.ico</file>
         <file>ico/light.png</file>
-        <file>ico/man.ico</file>
         <file>ico/memorycard.ico</file>
-        <file>ico/message-already-read.ico</file>
-        <file>ico/my-tickets.ico</file>
-        <file>ico/new-message.ico</file>
         <file>ico/packing.ico</file>
-        <file>ico/personal-information.ico</file>
-        <file>ico/qualification-history.ico</file>
-        <file>ico/search.ico</file>
-        <file>ico/success.ico</file>
-        <file>ico/usb.ico</file>
-        <file>ico/video-file.ico</file>
     </qresource>
 </RCC>
