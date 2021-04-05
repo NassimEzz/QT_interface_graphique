@@ -258,6 +258,7 @@ void MainWindow::editStyleSheets(QString style)
     ui->randomPrimaryButton->setStyleSheet(style);
     ui->trackSpinBox->setStyleSheet(style);
     ui->sectorSpinBox->setStyleSheet(style);
+    ui->refCharLabel->setStyleSheet(style);
 }
 
 void MainWindow::on_action7_by_7_mode_triggered()
