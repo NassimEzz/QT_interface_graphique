@@ -104,7 +104,12 @@ void MainWindow::updateMessageBits() {
     short * adaptedMessageBits = _model->getBinMessage(ui->paraWidget->getNumOfSectors() * ui->paraWidget->getNumOfTracks());
     ui->paraWidget->setMessageBits(adaptedMessageBits);
 
-    adaptedMessageBits = _model->getBinMessage(_model->getMsgLength()*7);
+    if (ui->action7_3_bits->isChecked()) {
+        adaptedMessageBits = _model->getBinMessage(_model->getMsgLength()*10);
+    } else {
+        adaptedMessageBits = _model->getBinMessage(_model->getMsgLength()*7);
+    }
+
     ui->binWidget->setMessageBits(adaptedMessageBits);
 }
 
