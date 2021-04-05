@@ -11,17 +11,17 @@
     <message>
         <location filename="mainwindow.ui" line="97"/>
         <source>Message:  </source>
-        <translation>Message</translation>
+        <translation>Message:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="52"/>
         <source>Number of Sectors: </source>
-        <translation>Nombre de Secteurs</translation>
+        <translation>Nombre de Secteurs:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="35"/>
         <source>Number of Tracks:</source>
-        <translation>Nombre de Pistes</translation>
+        <translation>Nombre de Pistes:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="61"/>
@@ -41,12 +41,12 @@
     <message>
         <location filename="mainwindow.ui" line="141"/>
         <source>Primary Color:</source>
-        <translation>Couleur Primaire</translation>
+        <translation>Couleur Primaire:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="179"/>
         <source>Secondary Color:</source>
-        <translation>Couleur Secondaire</translation>
+        <translation>Couleur Secondaire:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="207"/>
