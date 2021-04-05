@@ -25,7 +25,7 @@ private:
     short ** _binMessage;
     short * convertChar(const char c);
     char _caracRef;
-    int _nbtrapeze = 7;
+    int _nbTrapeze;
 
 public slots:
     void setMessage(QString msg);

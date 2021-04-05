@@ -20,13 +20,13 @@ void CircleWidget::drawCircle(){
     int circleRadius = std::min(heightShift/2,widthShift/2);
     int colCoord=0;
 
-    for(int k=0;k<_nbcol;k++){
+    for (int k=0;k<_nbcol;k++) {
         int rowCoord=40;
-        for(int i=0 ; i<_nbrow;i++){
-            if(_messageBits[i+k*_nbrow]==0){
+        for (int i=0 ; i<_nbrow;i++) {
+            if (_messageBits[i+k*_nbrow]==0) {
                 _painter.setBrush(QBrush(_secondary));
                 _painter.drawEllipse(QRect(colCoord,rowCoord,circleRadius,circleRadius));
-            }else{
+            } else {
                 _painter.setBrush(QBrush(_primary));
                 _painter.drawEllipse(QRect(colCoord,rowCoord,circleRadius,circleRadius));
             }

@@ -74,20 +74,20 @@ void MainWindow::onTrackSliderValueChanged(int sliderValue) {
 }
 
 void MainWindow::onSectorSpinBoxValueChanged(int sectorValue){
-    if(ui->action7_by_7_mode->isChecked()){
+    if (ui->action7_by_7_mode->isChecked()) {
         ui->sectorSlider->setValue(sectorValue/7);
-    } else if(ui->action10_by_10_mode->isChecked()){
+    } else if (ui->action10_by_10_mode->isChecked()) {
         ui->sectorSlider->setValue(sectorValue/10);
-    }else {
+    } else {
         ui->sectorSlider->setValue(sectorValue);
     }
 }
 
 void MainWindow::onSectorSliderValueChanged(int sliderValue) {
-    if(ui->action7_by_7_mode->isChecked()){
+    if (ui->action7_by_7_mode->isChecked()) {
         ui->paraWidget->setNumOfSectors(sliderValue*7);
         ui->sectorSpinBox->setValue(sliderValue*7);
-    } else if(ui->action10_by_10_mode->isChecked()) {
+    } else if (ui->action10_by_10_mode->isChecked()) {
         ui->paraWidget->setNumOfSectors(sliderValue*10);
         ui->sectorSpinBox->setValue(sliderValue*10);
     } else {
@@ -121,7 +121,7 @@ void MainWindow::on_actionOpen_triggered()
     std::cout << path.toUtf8().constData() << std::endl;
     QFile file(path);
 
-    if(!file.open(QIODevice::ReadOnly)){
+    if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "error opening file: " << file.error();
         return;
     }
@@ -145,7 +145,7 @@ void MainWindow::on_actionSave_triggered()
     QString path = QFileDialog::getSaveFileName(this,tr("Save File"),"/home/eleves/promo22/info/ezzayani/parachute.txt",tr("Text files (*.txt)"));
     QFile file(path);
 
-    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "error opening file: " << file.error();
         return;
     }
@@ -268,11 +268,12 @@ void MainWindow::editStyleSheets(QString style)
 
 void MainWindow::on_action7_by_7_mode_triggered()
 {
-    if(ui->action7_by_7_mode->isChecked()){
+    if (ui->action7_by_7_mode->isChecked()) {
 
-        if(ui->action10_by_10_mode->isChecked()){
+        if (ui->action10_by_10_mode->isChecked()) {
             ui->action10_by_10_mode->setChecked(false);
         }
+
         ui->sectorSpinBox->setSingleStep(7);
         ui->sectorSlider->setValue(ui->sectorSpinBox->value()/7);
         ui->sectorSpinBox->setValue(ui->sectorSlider->value()*7);
@@ -286,8 +287,8 @@ void MainWindow::on_action7_by_7_mode_triggered()
 
 void MainWindow::on_action10_by_10_mode_triggered()
 {
-    if(ui->action10_by_10_mode->isChecked()){
-        if(ui->action7_by_7_mode->isChecked()){
+    if (ui->action10_by_10_mode->isChecked()) {
+        if (ui->action7_by_7_mode->isChecked()) {
             ui->action7_by_7_mode->setChecked(false);
         }
         ui->sectorSpinBox->setSingleStep(10);
@@ -302,7 +303,7 @@ void MainWindow::on_action10_by_10_mode_triggered()
 
 void MainWindow::on_action7_3_bits_triggered()
 {
-    if(ui->action7_3_bits->isChecked()){
+    if (ui->action7_3_bits->isChecked()) {
         ui->binWidget->setNumOfRows(10);
         _model->setNbTrapeze(10);
         updateMessageBits();

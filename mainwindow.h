@@ -31,7 +31,7 @@ private:
     void animateSectors();
     void editStyleSheets(QString style);
 
-public slots:
+private slots:
     void onTrackSliderValueChanged(int sliderValue);
     void onSectorSliderValueChanged(int sliderValue);
     void onSectorSpinBoxValueChanged(int sliderValue);
@@ -42,8 +42,6 @@ public slots:
     void onRandomButtonPressed();
     void onAnimationFinished();
     void toggleDarkTheme();
-
-private slots:
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
     void on_action7_by_7_mode_triggered();
