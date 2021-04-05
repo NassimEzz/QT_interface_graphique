@@ -12,7 +12,7 @@ void ColorWidget::setColor(QColor color)
     repaint();
 }
 
-void ColorWidget::paintEvent(QPaintEvent *event)
+void ColorWidget::paintEvent(QPaintEvent *)
 {
     QRect rect(0, this->height() / 2 - 25, 50, 50);
 
@@ -22,7 +22,7 @@ void ColorWidget::paintEvent(QPaintEvent *event)
     _painter.end();
 }
 
-void ColorWidget::mousePressEvent(QMouseEvent *event)
+void ColorWidget::mousePressEvent(QMouseEvent *)
 {
     QColor selectedColor = QColorDialog::getColor();
     if (selectedColor.isValid()) {
