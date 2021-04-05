@@ -17,13 +17,13 @@ class ParachuteWidget : public QWidget
 
 private:
     QPainter _painter;
-    QColor _primary;
-    QColor _secondary;
     short * _messageBits;
-    float _parachuteRadius;
     int _numOfTracks;
     int _numOfSectors;
+    QColor _primary;
+    QColor _secondary;
     int _firstToDraw;
+    float _parachuteRadius;
 
     void drawTrapeze(int index, int bit);
 

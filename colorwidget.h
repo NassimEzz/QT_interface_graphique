@@ -12,8 +12,8 @@ class ColorWidget : public QWidget
     Q_OBJECT
 
 private:
-    QColor _color;
     QPainter _painter;
+    QColor _color;
 
 public:
     explicit ColorWidget(QWidget *parent = nullptr);

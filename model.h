@@ -20,12 +20,13 @@ public:
 
 
 private:
+    int _nbTrapeze;
     QString _message;
+    char _caracRef;
     int _msgLength;
     short ** _binMessage;
     short * convertChar(const char c);
-    char _caracRef;
-    int _nbTrapeze;
+
 
 public slots:
     void setMessage(QString msg);
