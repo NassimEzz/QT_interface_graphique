@@ -319,10 +319,17 @@ void MainWindow::on_action7_3_bits_triggered()
 
 void MainWindow::on_actionReference_Character_triggered()
 {
-    QString t = QInputDialog::getText(this,tr("Reference Character"),tr("Please enter the reference character:"));
-    if(t!=""){
+    QString input;
+
+    if (_dark) {
+        input = QInputDialog::getText(this, tr("Reference Character"), tr("<font color=\"white\">Please enter the reference character:"));
+    } else {
+        input = QInputDialog::getText(this, tr("Reference Character"), tr("Please enter the reference character:"));
+    }
+
+    if (input != "") {
         QString c ="";
-        _model->setCaracRef(*(t.toUtf8().constData()));
+        _model->setCaracRef(*(input.toUtf8().constData()));
         c+=_model->getCaracRef();
         ui->refCharLabel->setText(c);
         ui->messageText->setText("");
