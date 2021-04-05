@@ -7,12 +7,42 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    qsrand(time(0));
+
     ui->setupUi(this);
+    initializeUI();
+
     _model = new Model("");
     _dark = false;
 
-    qsrand(time(0));
+    animateTracks();
+    animateSectors();
 
+    connectSignalsToSlots();
+    ui->messageText->setText("ENSICAEN_RULES");
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::connectSignalsToSlots() {
+    connect(ui->trackSlider, &QSlider::valueChanged, this, &MainWindow::onTrackSliderValueChanged);
+    connect(ui->trackSlider, &QSlider::valueChanged, ui->trackSpinBox, &QSpinBox::setValue);
+    connect(ui->trackSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->trackSlider, &QSlider::setValue);
+    connect(ui->sectorSlider, &QSlider::valueChanged, this, &MainWindow::onSectorSliderValueChanged);
+    connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), this, &MainWindow::onSectorSpinBoxValueChanged);
+    connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
+    connect(ui->actionQuit,&QAction::triggered, this, &MainWindow::close);
+    connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onHelpMenu);
+    connect(ui->primaryWidget, &ColorWidget::colorChanged, this, &MainWindow::onPrimaryColorChanged);
+    connect(ui->secondaryWidget, &ColorWidget::colorChanged, this, &MainWindow::onSecondaryColorChanged);
+    connect(ui->randomPrimaryButton, &QPushButton::pressed, this, &MainWindow::onRandomButtonPressed);
+    connect(ui->actionDark, &QAction::triggered, this, &MainWindow::toggleDarkTheme);
+}
+
+void MainWindow::initializeUI() {
     ui->menuBar->addAction(ui->actionAbout); // Cannot be added in Designer
 
     // The following code is to create a widget that acts as a spacer in the QToolbar
@@ -23,19 +53,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->secondaryWidget->setColor("white");
 
-    connect(ui->trackSlider, &QSlider::valueChanged, this, &MainWindow::onTrackSliderValueChanged);
-    connect(ui->trackSlider, &QSlider::valueChanged, ui->trackSpinBox, &QSpinBox::setValue);
-    connect(ui->trackSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->trackSlider, &QSlider::setValue);
-    connect(ui->sectorSlider, &QSlider::valueChanged, this, &MainWindow::onSectorSliderValueChanged);
-    connect(ui->sectorSpinBox, qOverload<int>(&QSpinBox::valueChanged), this, &MainWindow::onSectorSpinBoxValueChanged);
-    connect(ui->messageText, &QLineEdit::textChanged, this, &MainWindow::onMessageChanged);
-
-    connect(ui->actionQuit,SIGNAL(triggered(bool)), this,SLOT(close()));
-    connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(OnHelpMenu()));
-    connect(ui->primaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onPrimaryColorChanged(QColor)));
-    connect(ui->secondaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onSecondaryColorChanged(QColor)));
-    connect(ui->randomPrimaryButton, SIGNAL(pressed()), this, SLOT(onRandomButtonPressed()));
-    connect(ui->actionDark, SIGNAL(triggered(bool)), this, SLOT(toggleDarkTheme()));
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
@@ -44,19 +61,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->action10_by_10_mode->setCheckable(true);
     ui->action7_3_bits->setCheckable(true);
 
-    ui->messageText->setText("ENSICAEN_RULES");
-
     ui->trackSlider->setEnabled(false);
     ui->sectorSlider->setEnabled(false);
     ui->trackSpinBox->setEnabled(false);
     ui->sectorSpinBox->setEnabled(false);
-    animateTracks();
-    animateSectors();
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
 }
 
 void MainWindow::onMessageChanged(QString message) {
@@ -161,7 +169,7 @@ void MainWindow::on_actionSave_triggered()
 
 }
 
-void MainWindow::OnHelpMenu()
+void MainWindow::onHelpMenu()
 {
     if (_dark) {
         QMessageBox::about(this, tr("About"), tr("<font color=\"white\">Parachute Encoder made by Nassim and Majd.<br>Copyright 2021"));
