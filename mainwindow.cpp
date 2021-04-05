@@ -164,9 +164,9 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::OnHelpMenu()
 {
     if (_dark) {
-        QMessageBox::about(this, tr("A propos"), tr("<font color=\"white\">Parachute Encoder made by Nassim and Majd.<br>Copyright 2021"));
+        QMessageBox::about(this, tr("About"), tr("<font color=\"white\">Parachute Encoder made by Nassim and Majd.<br>Copyright 2021"));
     } else {
-        QMessageBox::about(this, tr("A propos"), tr("Parachute Encoder made by Nassim and Majd.<br>Copyright 2021"));
+        QMessageBox::about(this, tr("About"), tr("Parachute Encoder made by Nassim and Majd.<br>Copyright 2021"));
     }
 
 }
