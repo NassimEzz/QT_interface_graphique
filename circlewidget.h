@@ -13,10 +13,15 @@ public:
     explicit CircleWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
     void setNumOfColumns(int numCol);
+    void setNumOfRows(int numRow);
     void setMessageBits(short * messageBits);
+    void setPrimary(QColor color);
+    void setSecondary(QColor color);
 
 private:
     QPainter _painter;
+    QColor _primary;
+    QColor _secondary;
     short _nbcol;
     short _nbrow;
     short * _messageBits;
