@@ -317,25 +317,40 @@
    <property name="text">
     <string>7 by 7 mode</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+&quot;</string>
+   </property>
   </action>
   <action name="action10_by_10_mode">
    <property name="text">
     <string>10 by 10 mode</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+'</string>
    </property>
   </action>
   <action name="action7_3_bits">
    <property name="text">
     <string>7 + 3 bits</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+(</string>
+   </property>
   </action>
   <action name="actionReference_Character">
    <property name="text">
     <string>Reference Character</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+&amp;</string>
+   </property>
   </action>
   <action name="actionEmpty_Central_Circle">
    <property name="text">
     <string>Empty Central Circle</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+É</string>
    </property>
   </action>
  </widget>
