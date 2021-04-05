@@ -41,6 +41,10 @@ void CircleWidget::setNumOfColumns(int numCol) {
     _nbcol = numCol;
 }
 
+void CircleWidget::setNumOfRows(int numRow){
+    _nbrow = numRow;
+}
+
 void CircleWidget::setMessageBits(short * messageBits) {
     _messageBits = messageBits;
 }

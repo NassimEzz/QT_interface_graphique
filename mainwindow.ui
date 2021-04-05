@@ -40,9 +40,6 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="2" colspan="2">
-       <widget class="QLineEdit" name="messageText"/>
-      </item>
       <item row="3" column="0">
        <widget class="QLabel" name="sectorSliderLabel">
         <property name="text">
@@ -107,7 +104,7 @@
          <number>0</number>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
+         <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
           </property>
@@ -121,19 +118,6 @@
             </property>
             <property name="text">
              <string>Random Primary</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="diskCheckBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Empty Central Disk</string>
             </property>
            </widget>
           </item>
@@ -208,6 +192,19 @@
         </item>
        </layout>
       </item>
+      <item row="7" column="2">
+       <widget class="QLineEdit" name="messageText"/>
+      </item>
+      <item row="7" column="3">
+       <widget class="QLabel" name="refCharLabel">
+        <property name="text">
+         <string>@</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -230,7 +227,18 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menu_Options">
+    <property name="title">
+     <string>&amp;Options</string>
+    </property>
+    <addaction name="actionReference_Character"/>
+    <addaction name="actionEmpty_Central_Circle"/>
+    <addaction name="action7_by_7_mode"/>
+    <addaction name="action10_by_10_mode"/>
+    <addaction name="action7_3_bits"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menu_Options"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="allowedAreas">
@@ -297,6 +305,31 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="action7_by_7_mode">
+   <property name="text">
+    <string>7 by 7 mode</string>
+   </property>
+  </action>
+  <action name="action10_by_10_mode">
+   <property name="text">
+    <string>10 by 10 mode</string>
+   </property>
+  </action>
+  <action name="action7_3_bits">
+   <property name="text">
+    <string>7 + 3 bits</string>
+   </property>
+  </action>
+  <action name="actionReference_Character">
+   <property name="text">
+    <string>Reference Character</string>
+   </property>
+  </action>
+  <action name="actionEmpty_Central_Circle">
+   <property name="text">
+    <string>Empty Central Circle</string>
    </property>
   </action>
  </widget>

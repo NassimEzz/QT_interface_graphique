@@ -35,15 +35,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->primaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onPrimaryColorChanged(QColor)));
     connect(ui->secondaryWidget, SIGNAL(colorChanged(QColor)), this, SLOT(onSecondaryColorChanged(QColor)));
     connect(ui->randomPrimaryButton, SIGNAL(pressed()), this, SLOT(onRandomButtonPressed()));
-    connect(ui->diskCheckBox, SIGNAL(toggled(bool)), this, SLOT(onCentralDiskToggled(bool)));
     connect(ui->actionDark, SIGNAL(triggered(bool)), this, SLOT(toggleDarkTheme()));
 
     ui->trackSlider->setValue(ui->paraWidget->getNumOfTracks());
     ui->sectorSlider->setValue(ui->paraWidget->getNumOfSectors());
-    ui->actionMode_7_par_7->setCheckable(true);
-    ui->actionMode_7_bits_3->setCheckable(true);
-    ui->actionMode_10_par_10->setCheckable(true);
-
+    ui->actionEmpty_Central_Circle->setCheckable(true);
+    ui->action7_by_7_mode->setCheckable(true);
+    ui->action10_by_10_mode->setCheckable(true);
+    ui->action7_3_bits->setCheckable(true);
 
     ui->messageText->setText("ENSICAEN_RULES");
 
@@ -75,9 +74,9 @@ void MainWindow::onTrackSliderValueChanged(int sliderValue) {
 }
 
 void MainWindow::onSectorSpinBoxValueChanged(int sectorValue){
-    if(ui->actionMode_7_par_7->isChecked()){
+    if(ui->action7_by_7_mode->isChecked()){
         ui->sectorSlider->setValue(sectorValue/7);
-    } else if(ui->actionMode_10_par_10->isChecked()){
+    } else if(ui->action10_by_10_mode->isChecked()){
         ui->sectorSlider->setValue(sectorValue/10);
     }else {
         ui->sectorSlider->setValue(sectorValue);
@@ -85,10 +84,10 @@ void MainWindow::onSectorSpinBoxValueChanged(int sectorValue){
 }
 
 void MainWindow::onSectorSliderValueChanged(int sliderValue) {
-    if(ui->actionMode_7_par_7->isChecked()){
+    if(ui->action7_by_7_mode->isChecked()){
         ui->paraWidget->setNumOfSectors(sliderValue*7);
         ui->sectorSpinBox->setValue(sliderValue*7);
-    } else if(ui->actionMode_10_par_10->isChecked()) {
+    } else if(ui->action10_by_10_mode->isChecked()) {
         ui->paraWidget->setNumOfSectors(sliderValue*10);
         ui->sectorSpinBox->setValue(sliderValue*10);
     } else {
@@ -96,7 +95,7 @@ void MainWindow::onSectorSliderValueChanged(int sliderValue) {
         ui->sectorSpinBox->setValue(sliderValue);
     }
 
-    if (ui->diskCheckBox->isChecked()) { ui->paraWidget->setFirstToDraw(sliderValue); }
+    if (ui->actionEmpty_Central_Circle->isChecked()) { ui->paraWidget->setFirstToDraw(sliderValue); }
     updateMessageBits();
     ui->paraWidget->repaint();
 }
@@ -188,17 +187,6 @@ void MainWindow::onRandomButtonPressed()
     ui->primaryWidget->setColor(QColor(qrand()%255, qrand()%255, qrand()%255));
 }
 
-void MainWindow::onCentralDiskToggled(bool checked)
-{
-    if (checked) {
-        ui->paraWidget->setFirstToDraw(ui->paraWidget->getNumOfSectors());
-    } else {
-        ui->paraWidget->setFirstToDraw(0);
-    }
-
-    ui->paraWidget->repaint();
-}
-
 void MainWindow::animateTracks()
 {
     _animation = new QPropertyAnimation(ui->trackSlider, "sliderPosition");
@@ -267,30 +255,17 @@ void MainWindow::editStyleSheets(QString style)
     ui->groupBox_2->setStyleSheet(style);
     ui->primaryLabel->setStyleSheet(style);
     ui->secondaryLabel->setStyleSheet(style);
-    ui->diskCheckBox->setStyleSheet(style);
     ui->randomPrimaryButton->setStyleSheet(style);
     ui->trackSpinBox->setStyleSheet(style);
     ui->sectorSpinBox->setStyleSheet(style);
 }
 
-void MainWindow::on_actionCaractere_de_reference_triggered()
+void MainWindow::on_action7_by_7_mode_triggered()
 {
-    QString t = QInputDialog::getText(this,tr("Reference Character"),tr("Please enter the reference character:"));
-    if(t!=""){
-        QString c ="";
-        _model->setCaracRef(*(t.toUtf8().constData()));
-        c+=_model->getCaracRef();
-        ui->caracRef->setText(c);
-        ui->messageText->setText("");
-     }
-}
+    if(ui->action7_by_7_mode->isChecked()){
 
-void MainWindow::on_actionMode_7_par_7_triggered()
-{
-    if(ui->actionMode_7_par_7->isChecked()){
-
-        if(ui->actionMode_10_par_10->isChecked()){
-            ui->actionMode_10_par_10->setChecked(false);
+        if(ui->action10_by_10_mode->isChecked()){
+            ui->action10_by_10_mode->setChecked(false);
         }
         ui->sectorSpinBox->setSingleStep(7);
         ui->sectorSlider->setValue(ui->sectorSpinBox->value()/7);
@@ -303,9 +278,25 @@ void MainWindow::on_actionMode_7_par_7_triggered()
     }
 }
 
-void MainWindow::on_actionMode_7_bits_3_triggered()
+void MainWindow::on_action10_by_10_mode_triggered()
 {
-    if(ui->actionMode_7_bits_3->isChecked()){
+    if(ui->action10_by_10_mode->isChecked()){
+        if(ui->action7_by_7_mode->isChecked()){
+            ui->action7_by_7_mode->setChecked(false);
+        }
+        ui->sectorSpinBox->setSingleStep(10);
+        ui->sectorSlider->setValue(ui->sectorSpinBox->value()/10);
+        ui->sectorSlider->setMaximum(9);
+    } else {
+        ui->sectorSpinBox->setSingleStep(1);
+        ui->sectorSlider->setMaximum(90);
+        ui->sectorSlider->setValue(ui->sectorSpinBox->value());
+    }
+}
+
+void MainWindow::on_action7_3_bits_triggered()
+{
+    if(ui->action7_3_bits->isChecked()){
         ui->binWidget->setNumOfRows(10);
         _model->setNbTrapeze(10);
         updateMessageBits();
@@ -318,21 +309,27 @@ void MainWindow::on_actionMode_7_bits_3_triggered()
         ui->binWidget->repaint();
         ui->paraWidget->repaint();
     }
-
 }
 
-void MainWindow::on_actionMode_10_par_10_triggered()
+void MainWindow::on_actionReference_Character_triggered()
 {
-    if(ui->actionMode_10_par_10->isChecked()){
-        if(ui->actionMode_7_par_7->isChecked()){
-            ui->actionMode_7_par_7->setChecked(false);
-        }
-        ui->sectorSpinBox->setSingleStep(10);
-        ui->sectorSlider->setValue(ui->sectorSpinBox->value()/10);
-        ui->sectorSlider->setMaximum(9);
+    QString t = QInputDialog::getText(this,tr("Reference Character"),tr("Please enter the reference character:"));
+    if(t!=""){
+        QString c ="";
+        _model->setCaracRef(*(t.toUtf8().constData()));
+        c+=_model->getCaracRef();
+        ui->refCharLabel->setText(c);
+        ui->messageText->setText("");
+     }
+}
+
+void MainWindow::on_actionEmpty_Central_Circle_triggered()
+{
+    if (ui->actionEmpty_Central_Circle->isChecked()) {
+        ui->paraWidget->setFirstToDraw(ui->paraWidget->getNumOfSectors());
     } else {
-        ui->sectorSpinBox->setSingleStep(1);
-        ui->sectorSlider->setMaximum(90);
-        ui->sectorSlider->setValue(ui->sectorSpinBox->value());
+        ui->paraWidget->setFirstToDraw(0);
     }
+
+    ui->paraWidget->repaint();
 }
