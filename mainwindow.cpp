@@ -276,7 +276,7 @@ void MainWindow::on_action7_by_7_mode_triggered()
 
         ui->sectorSpinBox->setSingleStep(7);
         ui->sectorSlider->setValue(ui->sectorSpinBox->value()/7);
-        ui->sectorSpinBox->setValue(ui->sectorSlider->value()*7);
+        onSectorSliderValueChanged(ui->sectorSlider->value());
         ui->sectorSlider->setMaximum(14);
     } else {
         ui->sectorSpinBox->setSingleStep(1);
