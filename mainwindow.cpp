@@ -95,15 +95,17 @@ void MainWindow::onSectorSliderValueChanged(int sliderValue) {
     if (ui->action7_by_7_mode->isChecked()) {
         ui->paraWidget->setNumOfSectors(sliderValue*7);
         ui->sectorSpinBox->setValue(sliderValue*7);
+        if (ui->actionEmpty_Central_Circle->isChecked()) { ui->paraWidget->setFirstToDraw(sliderValue * 7); }
     } else if (ui->action10_by_10_mode->isChecked()) {
         ui->paraWidget->setNumOfSectors(sliderValue*10);
         ui->sectorSpinBox->setValue(sliderValue*10);
+        if (ui->actionEmpty_Central_Circle->isChecked()) { ui->paraWidget->setFirstToDraw(sliderValue * 10); }
     } else {
         ui->paraWidget->setNumOfSectors(sliderValue);
         ui->sectorSpinBox->setValue(sliderValue);
+        if (ui->actionEmpty_Central_Circle->isChecked()) { ui->paraWidget->setFirstToDraw(sliderValue); }
     }
 
-    if (ui->actionEmpty_Central_Circle->isChecked()) { ui->paraWidget->setFirstToDraw(sliderValue); }
     updateMessageBits();
     ui->paraWidget->repaint();
 }
